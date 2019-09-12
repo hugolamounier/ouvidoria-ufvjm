@@ -1,0 +1,66 @@
+html{background: #fafafa ; padding: 0; margin: 0;}
+body{margin: 0; padding: 0;}
+
+.wrapper{width: 100%;margin: 0; padding: 0;}
+
+.division{width: 91%;height: 1px; border-top:1px solid #bbdefb; margin: 10px auto 10px auto;}
+
+
+/* Dashboard */
+.wrapper .menu_wrapper{width:230px;height: 100vh; float: left; position: relative;}
+.wrapper .menu_wrapper .menu{width: 100%;}
+.wrapper .menu_wrapper .menu ul{width: 100%;}
+.wrapper .menu_wrapper .menu ul li{width:100%; height: 40px; cursor: pointer;margin: 0 0 5px 0;padding: 0 0 0 10px;}
+.wrapper .menu_wrapper .menu ul li span{font-weight: bold;color: #616161 ;}
+.wrapper .menu_wrapper .menu ul li:hover{background: #fff8e1;}
+
+.wrapper .menu_wrapper .menu_footer{width: 100%; display: flex; position: absolute; bottom: 0;
+      align-items: center;  flex-wrap: wrap; justify-items: center; justify-content: center;}
+.wrapper .menu_wrapper .menu_footer .logo_ufvjm{width: 150px; height: 30px; background: url("../imagem/logo/logo_ufvjm.png") no-repeat;
+     margin: 0 0 0 0;background-size: 150px; margin: 5px 0 15px 0;}
+
+.wrapper .cnt{  width: calc(100% - 230px); height: 100vh; max-height: 100vh; overflow-y: auto; overflow-x: hidden; float: right;
+                padding: 10px 10px 10px 10px;}
+.wrapper .cnt .container{width: 90%;}
+.wrapper .cnt .dashboard_toolbox{width: 100%;height: 60px;margin: 20px 0 10px 0;-webkit-border-radius: 3px; -moz-border-radius: 3px;
+                                border-radius: 3px;padding: 0 10px 0 10px; display: flex; justify-content: flex-start;}
+.wrapper .cnt .dashboard_toolbox ul{list-style-type: none;}
+.wrapper .cnt .dashboard_toolbox ul > li{display: inline; margin: 0 5px 0 5px;}
+.wrapper .cnt .dashboard_toolbox ul > li a{font-weight: bold;}
+
+.wrapper .cnt .dashboard_sort{width: 95%;height: 50px; margin: 0 auto 10px auto; display: flex; justify-content: flex-end;}
+.wrapper .cnt .dashboard_sort ul lt{display: inline; margin: 0 10px 0 10px;}
+
+/* dropdown menu */
+ul.dropdown-content li a { color: #424242 !important;}
+
+
+.wrapper .cnt .manifestacoes_wrapper{width: 100%; min-height: 100px;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes{width: 96%; height: 50px; margin: 0 auto 20px auto; cursor: pointer;
+     background: #eeeeee;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 0 0 0 2px; position: relative;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes a{width:30px; height:25px;position: absolute;top:-7px;right: -7px;
+     -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; display: flex; justify-content: center; align-items: center;} 
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes a>i{color:#fff;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes a:hover{background: #ffc107 !important;}
+     .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row {margin: 0; padding: 0;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col{padding: 0;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col span{font-size: 11px; padding: 8px 5px 0 5px; display: block;}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col p{ margin: 0; padding: 0 5px 0 8px; display: block; font-size: 13.5px;
+font-weight: bold; color: #424242 ;
+}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes:hover{ background: #fff8e1 ;}
+
+
+/* login */
+.login{width:95%; height: 320px; background: #ffffff   ;
+     -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;
+    margin:10px auto 10px auto;
+    }
+.login .loginInfo{width: 90%; margin: 20px auto 0 auto;}
+.login .loginInfo a{font-weight: bold;}
+
+.logo{width: 300px; height: 233px; background: url("../imagem/logo/logo.png"); margin: 10px auto 10px auto;}
+.logo_mini{width: 100px; height: 78px; background: url("../imagem/logo/logo.png"); margin: 10px auto 10px auto; background-size: 100px;}
+
+
+.ufvjm_bg{background: #0065a2;}
