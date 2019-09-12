@@ -32,31 +32,8 @@
     <section id="listaManifestacoes">
         <div class="row">
             <div class="col s12 m12 l12 xl12">
-                <div class="manifestacoes_wrapper">
+                <div class="manifestacoes_wrapper" id="lManifestacoes">
                     <!-- Lista de manifestações -->
-                    <div class="manifestacoes">
-                        <div class="row">
-                            <div class="col s2"><span>Cód. Manifestação:</span> <p>1032304</p></div>
-                            <div class="col s2"><span>NUP:</span> <p>08231.123410/2019-01</p></div>
-                            <div class="col s2"><span>Tipo de Manifestação:</span> <p class="orange-text text-darken-1">Reclamação</p></div>
-                            <div class="col s3"><span>Assunto:</span> <p>12324434343</p></div>
-                            <div class="col s2"><span>Data de Recebimento:</span> <p>20/10/2019</p></div>
-                            <div class="col s1"><span>Data Limite:</span> <p>20/11/2019</p></div>
-                        </div>
-                        <a class="dropdown-trigger blue-grey tooltipped" data-position="bottom" data-tooltip="Visualização rápida"><i class="material-icons">pageview</i></a>
-                    </div>
-
-                    <div class="manifestacoes">
-                        <div class="row">
-                            <div class="col s2"><span>Cód. Manifestação:</span> <p>1032304</p></div>
-                            <div class="col s2"><span>NUP:</span> <p>08231.123410/2019-01</p></div>
-                            <div class="col s2"><span>Tipo de Manifestação:</span> <p class="orange-text text-darken-1">Reclamação</p></div>
-                            <div class="col s3"><span>Assunto:</span> <p>12324434343</p></div>
-                            <div class="col s2"><span>Data de Recebimento:</span> <p>20/10/2019</p></div>
-                            <div class="col s1"><span>Data Limite:</span> <p>20/11/2019</p></div>
-                        </div>
-                        <a class="dropdown-trigger blue-grey tooltipped" data-position="bottom" data-tooltip="Visualização rápida"><i class="material-icons">pageview</i></a>
-                    </div>
                     <!-- Fim -->
                 </div>
             </div>
@@ -72,8 +49,7 @@
             constrainWidth: false,
             alignment: "right",
         });
-  });
-  $(".manifestacoes").on("click", function(e){
-      
+
+        loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
   });
 </script>

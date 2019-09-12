@@ -1,7 +1,5 @@
 <?php
     require_once("config/config.php");
-    require_once("class/User.class.php");
-    require_once("class/Helper.class.php");
 ?>
 <!doctype html>
 <html>
@@ -30,7 +28,6 @@
         $_SESSION["logged_password"] = "";
         header("location:index.php");
     }
-    $db_conn = Helper::mysqlConnect($config["database_server"], $config["db_username"], $config["db_password"], $config["db_name"]);
     if(Helper::isLogged($db_conn))
     {
 ?>

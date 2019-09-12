@@ -2,7 +2,6 @@
     require("../config/config.php");
     require("../class/Helper.class.php");
 
-    $db_conn = Helper::mysqlConnect($config["database_server"], $config["db_username"], $config["db_password"], $config["db_name"]);
     if (isset($_POST['login'])) {
 
 	$erros = array(); //Array com todos os erros

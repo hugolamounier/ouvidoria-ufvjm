@@ -15,6 +15,17 @@ function login(url, formId)
         }
     });
 }
+function loadScript(url, container)
+{
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data)
+        {
+            $("#"+container).html(data);
+        }
+    });
+}
 function postForm(url, formId)
 {
     $.ajax({

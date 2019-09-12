@@ -53,5 +53,72 @@ class Helper{
                 return false;
             }
         }
+    public static function novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $db_conn)
+    {
+        $erros = array(); //Array de erros 
+
+        //Tratamentos se os campos estiverem vazios
+        if (empty($tipoManifestacao)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (tipoManifestacao)</li>";
+    
+        }elseif (empty($dataRecebimento)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (dataRecebimento)</li>";
+    
+        }elseif (empty($assunto)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios(assunto)</li>";
+    
+        }elseif (empty($situacao)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios(situacao)</li>";
+    
+        }elseif (empty($dataLimite)) {
+            $erros[] = "<li>Existem campos que não podem ser vazio (dataLimite)</li>";
+    
+        }elseif (empty($nomeDemandante)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios(Nome demandante)</li>";
+    
+        }elseif (empty($unidadeEnvolvida)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (unidadeEnvolvida)</li>";
+
+        }elseif (empty($emailDemandante)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (emailDemandante)</li>";
+    
+        }elseif (empty($usuario)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (usuario)</li>";
+    
+        }elseif (empty($proveniencia)) {
+            $erros[] = "<li>Existem campos que não podem ser vazios (proveniencia)</li>";
+    
+        }else{ 
+            if (Helper::novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $db_conn) ){
+                //Manda os valores digitados para o Helper
+                echo("ok");
+            }else{
+                echo("Dados não foram enviados");
+            }
+
+        }
+        $sql_1 = $db_conn->prepare("SELECT nup FROM manifestacao WHERE nup = ?");
+        $sql_1->bind_param("s" , $nup); 
+        $sql_1->execute();
+        $sql_1 = $sql_1->get_result();
+        if ($sql_1->num_rows > 0) { //Caso ja exista um nup com o msm numero do nup digitado
+            die("Nup ja existente");
+        }
+
+
+        //Insere os dados fornecidos
+        $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+
+        //Evita o sql injection
+        $sql->bind_param("sissississss" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia);
+        $sql->execute();
+        if ($sql) {
+            return true;
+        }else{
+
+            return false;
+        }
+    }
 }
 ?>
