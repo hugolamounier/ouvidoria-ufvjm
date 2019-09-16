@@ -10,6 +10,14 @@ class Helper{
                 return $connection;
         }
     }
+    public static function converterDataToMysqlData($date)
+    {
+        return substr($date, 6, 4)."-".substr($date, 3, 2)."-".substr($date, 0, 2);
+    }
+    public static function converterMysqlDataToData($mysqlDate)
+    {
+        return substr($mysqlDate, 8, 2)."/".substr($mysqlDate, 5, 2)."/".substr($mysqlDate, 0, 4);
+    }
     public static function isLogged($db_conn)
     {
         if(!isset($_SESSION['logged_user']) || !isset($_SESSION['logged_password']))

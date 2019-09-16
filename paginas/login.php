@@ -29,7 +29,7 @@
                                 </form>
                         </div>
                         <div class="row">
-                            <div class="col s4 offset-s8"><a class="blue darken-4 waves-effect waves-light btn-large hoverable" onClick="login();"><i class="material-icons left">send</i>Entrar</a></div>
+                            <div class="col s12 right-align"><a class="blue darken-4 waves-effect waves-light btn-large hoverable" onClick="login();"><i class="material-icons left">send</i>Entrar</a></div>
                         </div>
                     </div>
                 </div>

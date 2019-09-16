@@ -1,6 +1,5 @@
 <?php
-    require("../config/config.php");
-    require("../class/Helper.class.php");
+    require("../config/config_scripts.php");
 
     if (isset($_POST['login'])) {
 

@@ -9,11 +9,14 @@
 <title><?php echo($config["website_title"]); ?></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type='text/javascript' src='js/jquery.inputmask.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type='text/javascript' src='js/main.js'></script>
 </head>
@@ -32,12 +35,17 @@
     {
 ?>
     <?php include("menu.php"); ?>
-    <div class="cnt">
+    <div id="indexCnt" class="cnt">
     <?php
         $User = new User($_SESSION["login"], $_SESSION["senha"], $db_conn);
         if(isset($_GET["page"]))
         {
-            
+            if(file_exists("paginas/".$_GET["page"].".php"))
+            {
+                include("paginas/".$_GET["page"].".php");
+            }else{
+                include("paginas/404.php");
+            }
         }else{
             include("paginas/dashboard.php");
         }
@@ -49,6 +57,7 @@
     }
 ?>
 </div>
+
 </body>
 <script>
     $(document).ready(function(){
@@ -58,6 +67,10 @@
             $("li[name=dashboard]").addClass("grey").addClass("lighten-3");
         }else{
             $("li[name="+pageParam+"]").addClass("grey").addClass("lighten-3");
+            if(pageParam == 'add_manifestacao')
+            {
+                $("li[name=dashboard]").addClass("grey").addClass("lighten-3");
+            }
         }
     });
 </script>

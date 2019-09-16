@@ -1,18 +1,54 @@
 <?php
 require("../config/config_scripts.php");
 
-$nup = $_POST['nup'];
-$tipoManifestacao = $_POST['tipoManifestacao'];
-$dataRecebimento  = $_POST['dataRecebimento'];
-$assunto = $_POST['assunto'];
-$situacao = $_POST['situacao'];
-$dataLimite = $_POST['dataLimite'];
-$nomeDemandante = $_POST['nomeDemandante'];
-$unidadeEnvolvida =  $_POST['unidadeEnvolvida'];
-$emailDemandante =  $_POST['emailDemandante'];
-$usuario =  $_POST['usuario'];
-$infoExtra =  $_POST['infoExtra'];
-$proveniencia =  $_POST['proveniencia'];
+$erros = array(); //Array com todos os erros
 
+	$nup = $_POST['nup']; //Pega o 'nup' do formulario 
+	$tipoManifestacao = $_POST['tipoManifestacao'];//Pega o 'tipoManifestacao' do formulario
+	$dataRecebimento  = Helper::converterDataToMysqlData($_POST['dataRecebimento']);//Pega a 'dataRecebimento' do formulario
+	$assunto = $_POST['assunto'];//Pega o 'assunto' do formulario
+	$situacao = $_POST['situacao'];//Pega o 'situacao' do formulario
+	$dataLimite = Helper::converterDataToMysqlData($_POST['dataLimite']);//Pega o 'dataLimite' do formulario
+	$nomeDemandante = $_POST['nomeDemandante'];//Pega o 'nomeDemandante' do formulario
+	$unidadeEnvolvida =  $_POST['unidadeEnvolvida'];//Pega o 'unidadeEnvolvida' do formulario
+	$emailDemandante =  $_POST['emailDemandante'];//Pega o 'emailDemandante' do formulario
+	$usuario =  $_SESSION["logged_user"];//Pega o 'usuario' do formulario
+	$infoExtra =  $_POST['infoExtra'];//Pega o 'infoExtra' do formulario
+	$proveniencia =  $_POST['proveniencia'];//Pega o 'proveniencia' do formulario
+
+
+	//Tratamentos se os campos estiverem vazios
+	if (empty($tipoManifestacao)) {
+			die("Existem campos que não podem ser vazios (tipoManifestacao)");
+	
+		}elseif (empty($dataRecebimento)) {
+			die("Existem campos que não podem ser vazios (dataRecebimento)");
+		
+		}elseif (empty($assunto)) {
+			die("Existem campos que não podem ser vazios(assunto)");
+		
+		}elseif (empty($situacao)) {
+			die("Existem campos que não podem ser vazios(situacao)");
+		
+		}elseif (empty($dataLimite)) {
+			die("Existem campos que não podem ser vazio (dataLimite)");
+		
+		}elseif (empty($nomeDemandante)) {
+			die("Existem campos que não podem ser vazios(Nome demandante)");
+		
+		}elseif (empty($unidadeEnvolvida)) {
+			die("Existem campos que não podem ser vazios (unidadeEnvolvida)");
+	
+		}elseif (empty($emailDemandante)) {
+			die("Existem campos que não podem ser vazios (emailDemandante)");
+		}elseif (empty($proveniencia)) {
+			die("Existem campos que não podem ser vazios (proveniencia)");
+		}else{
+			if (Manifestacoes::novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $db_conn)) {
+				echo "ok";
+			}else{
+                echo("Dados não enviados ao BD");
+			}
+		}
 
 ?>

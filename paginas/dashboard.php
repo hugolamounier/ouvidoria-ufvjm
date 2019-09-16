@@ -3,8 +3,11 @@
         <div class="col s12">
             <div class="dashboard_toolbox z-depth-1 grey lighten-4 valign-wrapper">
                 <ul>
-                    <li><a class="waves-effect waves-light btn blue darken-4 hoverable"><i class="material-icons left">add</i>Inserir manifestação</a></li>
+                    <li><a onclick="location.href='?page=add_manifestacao'" class="waves-effect waves-light btn blue darken-4 hoverable"><i class="material-icons left">add</i>Inserir manifestação</a></li>
                 </ul>
+                <div class="search">
+                    <input id="searchManifestacao" name="searchManifestacao">
+                </div>
             </div>
         </div>
     </div>
@@ -13,6 +16,8 @@
         <div class="col s12">
             <div class="dashboard_sort valign-wrapper">
                 <ul>
+                    <lt><a onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Atualizar"><i class="material-icons">refresh</i></a></lt>
+                    <lt><a onclick="" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Agrupar por tipo"><i class="material-icons">group_work</i></a></lt>
                     <lt><a class="dropdown-trigger btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-target="sortdrop" data-position="bottom" data-tooltip="Ordenar"><i class="material-icons">sort</i></a></lt>
                 </ul>
 
