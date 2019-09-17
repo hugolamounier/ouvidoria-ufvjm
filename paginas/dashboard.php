@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <div class="dashboard_toolbox z-depth-1 grey lighten-4 valign-wrapper">
+            <div class="dashboard_toolbox valign-wrapper">
                 <ul>
                     <li><a onclick="location.href='?page=add_manifestacao'" class="waves-effect waves-light btn blue darken-4 hoverable"><i class="material-icons left">add</i>Inserir manifestação</a></li>
                 </ul>
                 <div class="search">
-                    <input id="searchManifestacao" name="searchManifestacao">
+                    <input id="searchManifestacao" type="text"  name="searchManifestacao" placeholder="Digite sua pesquisa">
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="dashboard_sort valign-wrapper">
                 <ul>
                     <lt><a onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Atualizar"><i class="material-icons">refresh</i></a></lt>
-                    <lt><a onclick="" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Agrupar por tipo"><i class="material-icons">group_work</i></a></lt>
+                    <lt><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=group', 'lManifestacoes');" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Agrupar por tipo"><i class="material-icons">group_work</i></a></lt>
                     <lt><a class="dropdown-trigger btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-target="sortdrop" data-position="bottom" data-tooltip="Ordenar"><i class="material-icons">sort</i></a></lt>
                 </ul>
 
@@ -56,5 +56,18 @@
         });
 
         loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
+
+
+        $("#searchManifestacao").keyup(function(){
+            if($(this).val() == '')
+            {
+                loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
+            }
+            if($(this).val().length >= 1)
+            {
+                loadScript("scripts/lista_manifestacoes.php?p="+$(this).val(), "lManifestacoes");
+            }
+        });
+
   });
 </script>

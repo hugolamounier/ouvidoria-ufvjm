@@ -1,9 +1,9 @@
 <?php
 class Manifestacoes{
 
-    public static function listarManifestacoes($tipoManifestacoes, $sort, $db_conn)
+    public static function listarManifestacoes($tipoManifestacao, $sort, $db_conn)
     {
-        if($tipoManifestacoes == '' or null)
+        if($tipoManifestacao == '' or null)
         {
             if($sort == '' or null)
             {
@@ -20,10 +20,22 @@ class Manifestacoes{
                 }
             }
         }else{
+            switch($tipoManifestacao)
+            {
+                case 1:
+                    $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ?");
+                    $sql->bind_para('i', $tipoManifestacao);
+                    $sql->execute();
+
+                    $sql = $sql->get_result();
+                    
+                    return $sql;
+                break;
+            }
 
         }
     }
-    public static function getManifestacaoName($intCode, $db_conn)
+    public static function getManifestacaoTypeName($intCode, $db_conn)
     {
         $sql = $db_conn->prepare("select nome from tipo_manifestacao where id = ? limit 1");
         $sql->bind_param("i", $intCode);
@@ -83,6 +95,32 @@ class Manifestacoes{
             }
         }else{
             return false;
+        }
+    }
+
+    public static function pesquisarManifestacao ($pesquisa, $db_conn){
+
+        $p = "%$pesquisa%";
+        $sql =  $db_conn->prepare("SELECT * FROM manifestacao WHERE nup = ? OR idManifestacao = ?");
+        $sql->bind_param("si" , $pesquisa, $pesquisa);
+        $sql->execute();
+        $sql = $sql->get_result();
+
+        if ($sql->num_rows >0) {
+            return $sql;
+        }else{ //Caso não ache pelo nup 
+            $sql_1 = $db_conn->prepare("SELECT * FROM manifestacao WHERE  assunto LIKE ? OR nomeDemandante LIKE ? 
+                    OR unidadeEnvolvida LIKE ? OR emailDemandante LIKE ? OR usuario LIKE ? OR infoExtra LIKE ? OR proveniencia LIKE ?");
+            $sql_1->bind_param("sssssss" , $p,$p,$p,$p,$p,$p,$p);
+            $sql_1->execute();
+            $sql_1 = $sql_1->get_result();
+
+            if ($sql_1->num_rows >0) { //Caso ache algo
+               return $sql_1;
+            }else{
+                return false;
+            }
+
         }
     }
 }
