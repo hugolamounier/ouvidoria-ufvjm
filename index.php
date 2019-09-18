@@ -66,10 +66,11 @@
         {
             $("li[name=dashboard]").addClass("grey").addClass("lighten-3");
         }else{
-            $("li[name="+pageParam+"]").addClass("grey").addClass("lighten-3");
-            if(pageParam == 'add_manifestacao')
+            if(pageParam == 'add_manifestacao' || pageParam == 'visualizar_manifestacao')
             {
                 $("li[name=dashboard]").addClass("grey").addClass("lighten-3");
+            }else{
+                $("li[name="+pageParam+"]").addClass("grey").addClass("lighten-3");
             }
         }
     });

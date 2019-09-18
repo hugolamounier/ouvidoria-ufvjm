@@ -1,16 +1,13 @@
 <?php
 
 ?>
+
+<div class="title">
+  <a onclick="location.href='?page=dashboard'" class="btn-floating btn-small waves-effect blue-grey lighten-3 tooltipped z-depth-0" data-position="bottom" data-tooltip="Voltar"><i class="material-icons">arrow_back</i></a>
+  <span class="blue-grey-text text-darken-3">Adicionar Manifestação <span class=''blue-grey-text></span></span>
+</div>
 <div class="container">
-<div class="title"></div>
-<div class="row">
+  <div class="row">
     
   </div>
 </div>
-<script>$(document).ready(function(){
-    $('select').formSelect();
-    $('#nup').inputmask("99999.999999/9999-99");  
-    $('#datarecebimento').inputmask("99/99/9999"); 
-    $('#datalimite').inputmask("99/99/9999");
-  });
-  </script>

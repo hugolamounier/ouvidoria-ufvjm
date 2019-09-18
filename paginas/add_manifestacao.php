@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<div class="title"><a onclick="location.href='?page=dashboard'" class="btn-floating btn-small waves-effect blue-grey lighten-3 tooltipped z-depth-0" data-position="bottom" data-tooltip="Voltar"><i class="material-icons">arrow_back</i></a><span class="blue-grey-text text-darken-1">Adicionar Manifestação</span></div>
+<div class="title"><a onclick="location.href='?page=dashboard'" class="btn-floating btn-small waves-effect blue-grey lighten-3 tooltipped z-depth-0" data-position="bottom" data-tooltip="Voltar"><i class="material-icons">arrow_back</i></a><span class="blue-grey-text text-darken-3">Adicionar Manifestação</span></div>
 <div class="container">
 <div class="row">
     <form id="formManifestacao" name="formManifestacao" class="col s12">
@@ -41,7 +41,7 @@
                     <option value="1">Cadastrada</option>
                     <option value="2">Complementação Solicitada</option>
                     <option value="3">Complementada</option>
-                    <option value="4">Encaminhada por Outro Ouvidoria</option>
+                    <option value="4">Encaminhada por Outra Ouvidoria</option>
                     <option value="5">Prorrogada</option>
                     <option value="6">Arquivada</option>
                     <option value="7">Concluída</option>

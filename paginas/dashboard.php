@@ -15,9 +15,9 @@
     <div class="row">
         <div class="col s12">
             <div class="dashboard_sort valign-wrapper">
-                <ul>
+                <ul class="z-depth-1">
                     <lt><a onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Atualizar"><i class="material-icons">refresh</i></a></lt>
-                    <lt><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=group', 'lManifestacoes');" class="btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-position="bottom" data-tooltip="Agrupar por tipo"><i class="material-icons">group_work</i></a></lt>
+                    <lt><a class="dropdown-trigger btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-target="groupdrop" data-position="bottom" data-tooltip="Agrupar por tipo"><i class="material-icons">group_work</i></a></lt>
                     <lt><a class="dropdown-trigger btn-floating btn-medium waves-effect light-blue darken-4 tooltipped hoverable" data-target="sortdrop" data-position="bottom" data-tooltip="Ordenar"><i class="material-icons">sort</i></a></lt>
                 </ul>
 
@@ -28,7 +28,23 @@
                     <li><a href="#!">Tipo de Manifestação</a></li>
                     <li><a href="#!">Situação da Manifestação</a></li>
                 </ul>
+
+                <ul id='groupdrop' class='dropdown-content'>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');">Todos os tipos</a></li>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=1', 'lManifestacoes');">Denúncia</a></li>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=2', 'lManifestacoes');">Reclamação</a></li>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=3', 'lManifestacoes');">Solicitação</a></li>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=4', 'lManifestacoes');">Sugestão</a></li>
+                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=5', 'lManifestacoes');">Elogio</a></li>
+                </ul>
                 <!--- dropdown end -->
+                <div class='legenda z-depth-1'>
+                    <div class="tipo_manifestacao"><div class="red darken-1"></div><span>Denúncia</span></div>
+                    <div class="tipo_manifestacao"><div class="orange darken-2"></div><span>Reclamação</span></div>
+                    <div class="tipo_manifestacao"><div class="green darken-1"></div><span>Solicitação</span></div>
+                    <div class="tipo_manifestacao"><div class="yellow lighten-1"></div><span>Sugestão</span></div>
+                    <div class="tipo_manifestacao"><div class="pink accent-2"></div><span>Elogio</span></div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,9 +79,15 @@
             {
                 loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
             }
-            if($(this).val().length >= 1)
+        //         loadScript("scripts/lista_manifestacoes.php?p="+$(this).val(), "lManifestacoes");
+        //         $("#pesquisaQuery span").html("Resultado pesquisa: "+$(this).val());
+        //     }
+        });
+
+        $(document).on("keypress", function(e){
+            if(e.which == 13)
             {
-                loadScript("scripts/lista_manifestacoes.php?p="+$(this).val(), "lManifestacoes");
+                loadScript("scripts/lista_manifestacoes.php?p="+$("#searchManifestacao").val(), "lManifestacoes");
             }
         });
 

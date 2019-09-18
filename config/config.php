@@ -19,5 +19,8 @@ $config["db_username"] = "root";
 $config["db_password"] = "01954501";
 $config["db_name"] = "ouvidoria";
 
+$config["pagination_num"] = 10;
+
+
 $db_conn = Helper::mysqlConnect($config["db_server"], $config["db_username"], $config["db_password"], $config["db_name"]);
 ?>
