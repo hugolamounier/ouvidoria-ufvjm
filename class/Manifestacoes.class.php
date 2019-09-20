@@ -73,6 +73,20 @@ class Manifestacoes{
         }
     }
 
+    public static function getProvenienciaNome($id, $db_conn)
+    {
+        $sql = $db_conn->prepare("select * from proveniencia where id = ?");
+        $sql->bind_param('i', $id);
+        $sql->execute();
+        if($sql)
+        {
+            $sql = $sql->get_result();
+            $row = $sql->fetch_array();
+
+            return $row["nomeProveniencia"];
+        }
+    }
+
     public static function getCorManifestacao($tipoManifestacao)
     {
         switch($tipoManifestacao)

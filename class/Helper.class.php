@@ -113,7 +113,6 @@ class Helper{
             die("Nup ja existente");
         }
 
-
         //Insere os dados fornecidos
         $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia) 
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -127,6 +126,22 @@ class Helper{
 
             return false;
         }
+    }
+    public static function genListaProveniencia($db_conn)
+    {
+        $sql = $db_conn->prepare("select * from proveniencia");
+        $sql->execute();
+        $sql = $sql->get_result();
+
+        return $sql;
+    }
+    public static function genListaAssuntos($db_conn)
+    {
+        $sql = $db_conn->prepare("select * from assuntos");
+        $sql->execute();
+        $sql = $sql->get_result();
+
+        return $sql;
     }
 }
 ?>

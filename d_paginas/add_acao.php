@@ -65,7 +65,7 @@
             <div class="file-field input-field">
                 <div class="btn light-blue darken-4">
                     <span>Anexo</span>
-                    <input type="file">
+                    <input type="file" name="anexo">
                 </div>
                 <div class="file-path-wrapper">
                     <input placeholder="Selecione o arquivo" class="file-path validate" type="text">

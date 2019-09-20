@@ -47,7 +47,7 @@
             <div class='col s3'><span>Nome Demandante:</span> <span><?php echo $Manifestacao->getNomeDemandante() ?></span></div>
             <div class='col s3'><span>E-mail Demandante:</span> <span><?php echo $Manifestacao->getEmailDemandante() ?></span></div>
             <div class='col s2'><span>Unidade Envolvida:</span> <span><?php echo $Manifestacao->getUnidadeEnvolvida() ?></span></div>
-            <div class='col s4'><span>Proveniência:</span> <span><?php echo $Manifestacao->getProveniencia() ?></span></div>
+            <div class='col s4'><span>Proveniência:</span> <span><?php echo Manifestacoes::getProvenienciaNome($Manifestacao->getProveniencia(), $db_conn) ?></span></div>
         </div>
     </div>
 

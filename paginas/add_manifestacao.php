@@ -33,7 +33,7 @@
         <div class="row">
             <div class="input-field col s9">
                 <input id="assunto" type="text" class="validate" name="assunto">
-                <label for="assunto">Assunto</label>
+                <label for="assunto">Sobre a manifestação</label>
             </div>
             <div class="input-field col s3">
                 <select name="situacao">
@@ -55,9 +55,31 @@
                 <input id="unidadeEnvolvida" type="text" class="validate" name="unidadeEnvolvida">
                 <label for="unidadeEnvolvida">Unidade Envolvida</label>
             </div>
-            <div class="input-field col s8">
-                <input id="proveniencia" type="text" class="validate" name="proveniencia">
-                <label for="proveniencia">Proveniência</label>
+            <div class="input-field col s4">
+            <select name="proveniencia">
+                    <option value="" disabled selected>Selecione a proveniência</option>
+                    <?php
+                        $sql = Helper::genListaProveniencia($db_conn);
+                        while($row = $sql->fetch_array())
+                        {
+                            echo("<option value=\"".$row['id']."\">".$row['nomeProveniencia']."</option>");
+                        }
+                    ?>
+                </select>
+                <label>Proveniência</label>
+            </div>
+            <div class="input-field col s4">
+                <select name="topicoManifestacao">
+                    <option value="" disabled selected>Selecione o assunto</option>
+                    <?php
+                        $sql = Helper::genListaAssuntos($db_conn);
+                        while($row = $sql->fetch_array())
+                        {
+                            echo("<option value=\"".$row['id']."\">".$row['nomeAssunto']."</option>");
+                        }
+                    ?>
+                </select>
+                <label>Assunto</label>
             </div>
         </div>
         <div class="row">
