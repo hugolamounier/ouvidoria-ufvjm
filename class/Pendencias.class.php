@@ -1,7 +1,15 @@
 <?php
 class Pendencias{
 
+    public static function addPendencia($idManifestacao, $tipoPendencia, $descricaoPendencia, $dataPendencia, $usuario, $anexo, $db_conn)
+    {
+        if(empty($idManifestacao) || empty($tipoPendencia) || empty($dataPendencia) || empty($usuario))
+        {
+            die("Preencha todos os campos obrigatórios.");
+        }
 
+        
+    }
     public static function getNomePendencia($codPendencia)
     {
         switch($codPendencia)

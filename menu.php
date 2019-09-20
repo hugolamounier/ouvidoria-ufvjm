@@ -1,4 +1,4 @@
-<div class="menu_wrapper z-depth-1 grey lighten-5">
+<div class="menu_wrapper z-depth-3 grey lighten-5">
         <div class="logo_mini"></div>
         <div class="division"></div>
         <div class="menu">

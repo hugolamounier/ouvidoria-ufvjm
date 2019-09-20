@@ -17,9 +17,7 @@ if(isset($_GET["p"]))
     {
         while($row = $resutlado_pesquisa->fetch_array())
         {
-            echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
-            echo("<a onclick=\"location.href='?page=editar_manifestacao&id=".$row['idManifestacao']."'\" class=\"blue-grey tooltipped\" data-position=\"bottom\" data-tooltip=\"Editar\"><i class=\"material-icons\">edit</i></a>");
-            echo("<a onclick=\"deletarManifestacao('".$row['idManifestacao']."');\" class=\"blue-grey tooltipped\" data-position=\"bottom\" data-tooltip=\"Excluir\"><i class=\"material-icons\">delete</i></a>");
+            echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                 echo("<div class=\"row\">");
                     echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                     echo("<div class=\"col s2\"><span>NUP:</span> <p>".($row["nup"]==''?("---") : ($row["nup"]))."</p></div>");
@@ -40,7 +38,7 @@ if(isset($_GET["p"]))
         echo("<div class=\"group_title blue-grey-text\"><span>Lista de demandas</span></div>");
         while($row = $lista->fetch_array())
         {
-            echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+            echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                 echo("<div class=\"row\">");
                     echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                     echo("<div class=\"col s2\"><span>NUP:</span> <p>".($row["nup"]==''?("---") : ($row["nup"]))."</p></div>");
@@ -59,7 +57,7 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Denúncia</span></div>");
             while($row = $denuncia->fetch_array())
             {
-                echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+                echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                     echo("<div class=\"row\">");
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
@@ -76,7 +74,7 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Reclamação</span></div>");
             while($row = $reclamacao->fetch_array())
             {
-                echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+                echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                     echo("<div class=\"row\">");
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
@@ -93,7 +91,7 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Solicitação</span></div>");
             while($row = $solicitacao->fetch_array())
             {
-                echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+                echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                     echo("<div class=\"row\">");
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
@@ -110,7 +108,7 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Sugestão</span></div>");
             while($row = $sugestao->fetch_array())
             {
-                echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+                echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                     echo("<div class=\"row\">");
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
@@ -127,7 +125,7 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Elogio</span></div>");
             while($row = $elogio->fetch_array())
             {
-                echo("<div class=\"manifestacoes ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
+                echo("<div class=\"manifestacoes z-depth-1 ".Manifestacoes::getCorManifestacaoClass($row['tipoManifestacao'])."\" onclick=\"location.href='?page=visualizar_manifestacao&id=".$row["idManifestacao"]."'\">");
                     echo("<div class=\"row\">");
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
