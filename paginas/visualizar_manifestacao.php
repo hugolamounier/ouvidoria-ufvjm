@@ -78,6 +78,36 @@
             <div class='footer grey lighten-3'></div>
         </div>
 
+        <div class='pendencia z-depth-1'>
+            <div class='header yellow'><span>Resposta Ouvidoria</span></div>
+            <div class='info_body'><span>Boa tarde.</span></div>
+            <div class='footer grey lighten-3'></div>
+        </div>
+
+        <div class='pendencia z-depth-1'>
+            <div class='header deep-purple lighten-3'><span>Resposta Demandado</span></div>
+            <div class='info_body'><span>OK.</span></div>
+            <div class='footer grey lighten-3'></div>
+        </div>
+
+        <div class='pendencia z-depth-1'>
+            <div class='header red darken-1'><span>Resposta Demandante</span></div>
+            <div class='info_body'><span>OK.</span></div>
+            <div class='footer grey lighten-3'></div>
+        </div>
+
+        <div class='pendencia z-depth-1'>
+            <div class='header green darken-3'><span>Solicitação de Informação Complementar</span></div>
+            <div class='info_body'><span>OK.</span></div>
+            <div class='footer grey lighten-3'></div>
+        </div>
+
+        <div class='pendencia z-depth-1'>
+            <div class='header pink lighten-3'><span>Posicionamento Final</span></div>
+            <div class='info_body'><span>OK.</span></div>
+            <div class='footer grey lighten-3'></div>
+        </div>
+
     </div>
 </div>
 <script>
