@@ -14,6 +14,7 @@ class Manifestacoes{
     protected $usuario="";
     protected $infoExtra="";
     protected $proveniencia="";
+    protected $topicoManifestacao="";
 
 
     public function __construct($idManifestacao, $db_conn)
@@ -39,6 +40,7 @@ class Manifestacoes{
             $this->usuario = $row["usuario"];
             $this->infoExtra = $row["infoExtra"];
             $this->proveniencia = $row["proveniencia"];
+            $this->topicoManifestacao = $row["topicoManifestacao"];
         }
     }
 
@@ -84,6 +86,19 @@ class Manifestacoes{
             $row = $sql->fetch_array();
 
             return $row["nomeProveniencia"];
+        }
+    }
+    public static function getAssuntoNome($id, $db_conn)
+    {
+        $sql = $db_conn->prepare("select * from assuntos where id = ?");
+        $sql->bind_param('i', $id);
+        $sql->execute();
+        if($sql)
+        {
+            $sql = $sql->get_result();
+            $row = $sql->fetch_array();
+
+            return $row["nomeAssunto"];
         }
     }
 
@@ -355,6 +370,14 @@ class Manifestacoes{
     public function getIdManifestacao()
     {
         return $this->idManifestacao;
+    }
+
+    /**
+     * Get the value of topicoManifestacao
+     */ 
+    public function getTopicoManifestacao()
+    {
+        return $this->topicoManifestacao;
     }
 }
 ?>

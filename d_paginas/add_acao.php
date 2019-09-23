@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 right-align"><a class="blue darken-4 waves-effect waves-light btn-large hoverable" onClick="login();"><i class="material-icons left">send</i>Adicionar</a></div>
+            <div class="col s12 right-align"><a class="blue darken-4 waves-effect waves-light btn-large hoverable"><i class="material-icons left">send</i>Adicionar</a></div>
         </div>
     </form>
 </div>
@@ -95,15 +95,32 @@
                 $("#parteEnvolvidaWrapper").fadeOut(150);
             }
         });
-        $("#add_acao").submit(function(e){
-            e.preventDefault();
+        // $("#add_acao").submit(function(e){
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
+        //     $.post('../scripts/add_acao.php', formData, function(data){
+        //         alert(data);
+        //     });
+        // });
+        $("div a").on("click", function(){
             var formData = new FormData(this);
-            $.post('../scripts/add_acao.php', formData, function(data){
-                alert(data);
-            });
-        });
-        $("a").on("click", function(){
+            $.ajax({
+                url: '../scripts/add_acao.php?idManifestacao='+<?php echo $idManifestacao ?>,
+                type: 'POST',
+                data: formData,
+                async: false,
+                onsuccess: function(data)
+                {
+                    if(data == "ok")
+                    {
+                        alert("Ocorrências adicionada.");
+                        destroyFloatingWindow();
+                    }else{
+                        alert(data);
+                    }
+                }
 
+            });
         });
     });
 </script>

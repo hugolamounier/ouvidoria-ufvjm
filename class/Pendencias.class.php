@@ -8,7 +8,17 @@ class Pendencias{
             die("Preencha todos os campos obrigatórios.");
         }
 
-        $sql = $db_conn->prepare("insert into pendencias (idManifestacao, tipoPendencia, descricaoPendencia, dataPendencia, usuario, anexo) values ()");
+        $sql = $db_conn->prepare("insert into pendencias (idManifestacao, tipoPendencia, descricaoPendencia, dataPendencia, usuario, anexo)
+        values (?,?,?,?,?,?)");
+        $sql->bind_param("iissss", $idManifestacao, $tipoPendencia, $descricaoPendencia, $dataPendencia, $usuario, $anexo);
+        $sql->execute();
+
+        if($sql)
+        {
+            return true;
+        }else{
+            return false;
+        }
 
         
     }
@@ -34,9 +44,23 @@ class Pendencias{
             }
 
         }else{
-            echo("O código da manifestação não existe.");
+            die("O código da manifestação não existe.");
         }
     }
+    public static function getListaPendencias($idManifestacao, $db_conn)
+    {
+        $sql = $db_conn->prepare("select * from pendencias where idManifestacao=? order by dataPendencia ASC");
+        $sql->bind_param("i", $idManifestacao);
+        $sql->execute();
+        $sql = $sql->get_result();
+        if($sql->num_rows > 0)
+        {
+            return $sql;
+        }else{
+            return false;
+        }
+    }
+
     public static function getNomePendencia($codPendencia)
     {
         switch($codPendencia)

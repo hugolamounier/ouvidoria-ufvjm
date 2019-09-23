@@ -1,6 +1,6 @@
 <?php
     require("../config/config_scripts.php");
-
+    die("123");
     if(isset($_GET['idManifestacao']) && isset($_POST['tipoPendencia']) && isset($_POST['dataPendencia']) && isset($_POST['descricaoPendencia']))
      {
         $idManifestacao = $_GET['idManifestacao'];
@@ -29,9 +29,24 @@
                 $dataEncaminhamento = $_POST['dataEncaminhamento'];
                 $dataLimitePosicionamento = $_POST['dataLimitePosicionamento'];
 
-                 
+                if(Pendencias::addParteEnvolvida($idManifestacao, $encaminhamentoPara, $dataEncaminhamento, $dataLimitePosicionamento, $_SESSION["logged_user"], $db_conn))
+                {
+                    if(Pendencias::addPendencia())
+                    {
+                        die("ok");
+                    }else{
+                        die("Erro ao adicionar a ocorrência.");
+                    }
+                }else{
+                    die("Erro ao adicionar parte envolvida, tente novamente.");
+                }                
             }else{
-                Pendencias::
+                if(Pendencias::addPendencia())
+                {
+                    die("ok");
+                }else{
+                    die("Erro ao adicionar a ocorrência.");
+                }
             }
          }
      }

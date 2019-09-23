@@ -52,8 +52,15 @@
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input id="unidadeEnvolvida" type="text" class="validate" name="unidadeEnvolvida">
-                <label for="unidadeEnvolvida">Unidade Envolvida</label>
+                    <select name="unidadeEnvolvida">
+                        <option value="" disabled selected>Selecione a situação</option>
+                        <option value="Campus JK">Campus JK</option>
+                        <option value="Campus I">Campus I</option>
+                        <option value="Campus Janaúba">Campus Janaúba</option>
+                        <option value="Campus Unaí">Campus Unaí</option>
+                        <option value="Campus Mucuri">Campus Mucuri</option>
+                    </select>
+                    <label>Campus</label>
             </div>
             <div class="input-field col s4">
             <select name="proveniencia">
