@@ -173,7 +173,7 @@ class Manifestacoes{
             die("Tipo inexistente.");
         }
     }
-    public static function novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $db_conn)
+    public static function novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $db_conn)
     {
         if($nup != '' or NULL)
         {
@@ -185,13 +185,12 @@ class Manifestacoes{
                 die("NUP já existente");
             }   
         }
-
         //Insere os dados fornecidos
-        $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia, topicoManifestacao)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         //Evita o sql injection
-        $sql->bind_param("sississsssss" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia);
+        $sql->bind_param("sississsssssi" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao);
         $sql->execute();
 
         if ($sql) {

@@ -15,36 +15,39 @@ $erros = array(); //Array com todos os erros
 	$usuario =  $_SESSION["logged_user"];//Pega o 'usuario' do formulario
 	$infoExtra =  $_POST['infoExtra'];//Pega o 'infoExtra' do formulario
 	$proveniencia =  $_POST['proveniencia'];//Pega o 'proveniencia' do formulario
+	$topicoManifestacao = $_POST["topicoManifestacao"]; //Pega o tópico
 
 
 	//Tratamentos se os campos estiverem vazios
 	if (empty($tipoManifestacao)) {
-			die("Existem campos que não podem ser vazios (tipoManifestacao)");
+			die("Existem campos que não podem ser vazios (Tipo da Manifestação)");
 	
 		}elseif (empty($dataRecebimento)) {
-			die("Existem campos que não podem ser vazios (dataRecebimento)");
+			die("Existem campos que não podem ser vazios (Data Recebimento)");
 		
 		}elseif (empty($assunto)) {
-			die("Existem campos que não podem ser vazios(assunto)");
+			die("Existem campos que não podem ser vazios(Sobre a manifestação)");
 		
 		}elseif (empty($situacao)) {
-			die("Existem campos que não podem ser vazios(situacao)");
+			die("Existem campos que não podem ser vazios(Situação)");
 		
 		}elseif (empty($dataLimite)) {
-			die("Existem campos que não podem ser vazio (dataLimite)");
+			die("Existem campos que não podem ser vazio (Data Limite)");
 		
 		}elseif (empty($nomeDemandante)) {
 			die("Existem campos que não podem ser vazios(Nome demandante)");
 		
 		}elseif (empty($unidadeEnvolvida)) {
-			die("Existem campos que não podem ser vazios (unidadeEnvolvida)");
+			die("Existem campos que não podem ser vazios (Unidade Envolvida)");
 	
 		}elseif (empty($emailDemandante)) {
-			die("Existem campos que não podem ser vazios (emailDemandante)");
+			die("Existem campos que não podem ser vazios (E-mail Demandante)");
 		}elseif (empty($proveniencia)) {
-			die("Existem campos que não podem ser vazios (proveniencia)");
+			die("Existem campos que não podem ser vazios (Proveniência)");
+		}elseif (empty($topicoManifestacao)){
+			die("Existem campos que não podem ser vazios (Assunto)");
 		}else{
-			if (Manifestacoes::novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $db_conn)) {
+			if (Manifestacoes::novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $db_conn)) {
 				echo "ok";
 			}else{
                 echo("Dados não enviados ao BD");

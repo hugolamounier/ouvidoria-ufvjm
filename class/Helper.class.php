@@ -131,17 +131,26 @@ class Helper{
     {
         $sql = $db_conn->prepare("select * from proveniencia");
         $sql->execute();
-        $sql = $sql->get_result();
-
-        return $sql;
+        
+        if($sql)
+        {
+            $sql = $sql->get_result();
+            return $sql;
+        }else{
+            return false;
+        }
     }
     public static function genListaAssuntos($db_conn)
     {
         $sql = $db_conn->prepare("select * from assuntos");
         $sql->execute();
-        $sql = $sql->get_result();
-
-        return $sql;
+        if($sql)
+        {
+            $sql = $sql->get_result();
+            return $sql;
+        }else{
+            return false;
+        }
     }
 }
 ?>

@@ -33,7 +33,7 @@
         <div class="row">
             <div class="input-field col s9">
                 <input id="assunto" type="text" class="validate" name="assunto">
-                <label for="assunto">Sobre a manifestação</label>
+                <label for="assunto">Título da manifestação</label>
             </div>
             <div class="input-field col s3">
                 <select name="situacao">
