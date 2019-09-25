@@ -7,7 +7,8 @@
     }
 ?>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-<script type='text/javascript' src='js/jquery.inputmask.min.js'></script>
+<script type='text/javascript' src='../js/jquery.inputmask.min.js'></script>
+<script type='text/javascript' src='../js/main.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <div class='row'>
@@ -73,7 +74,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 right-align"><a class="blue darken-4 waves-effect waves-light btn-large hoverable"><i class="material-icons left">send</i>Adicionar</a></div>
+            <div id="submitBtn" class="col s12 right-align"><a class="blue darken-4 waves-effect waves-light btn-large hoverable"><i class="material-icons left">send</i>Adicionar</a></div>
         </div>
     </form>
 </div>
@@ -95,32 +96,33 @@
                 $("#parteEnvolvidaWrapper").fadeOut(150);
             }
         });
-        // $("#add_acao").submit(function(e){
-        //     e.preventDefault();
-        //     var formData = new FormData(this);
-        //     $.post('../scripts/add_acao.php', formData, function(data){
-        //         alert(data);
-        //     });
-        // });
-        $("div a").on("click", function(){
+        
+        $("#add_acao").submit(function(e){
+            e.preventDefault();
             var formData = new FormData(this);
+            var id = <?php echo $idManifestacao ?>;
             $.ajax({
-                url: '../scripts/add_acao.php?idManifestacao='+<?php echo $idManifestacao ?>,
+                url: "scripts/add_acao.php?idManifestacao="+id,
                 type: 'POST',
                 data: formData,
                 async: false,
-                onsuccess: function(data)
-                {
-                    if(data == "ok")
+                success: function(data)
                     {
-                        alert("Ocorrências adicionada.");
-                        destroyFloatingWindow();
-                    }else{
-                        alert(data);
-                    }
-                }
-
+                        if(data == "ok")
+                        {
+                            alert("Ocorrências adicionada.");
+                            location.reload();
+                        }else{
+                            alert(data);
+                        }
+                    },
+                cache: false,
+                contentType: false,
+                processData: false 
             });
+        });
+        $("#submitBtn a").on("click", function(){
+            $("#add_acao").submit();
         });
     });
 </script>

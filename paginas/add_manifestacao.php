@@ -31,9 +31,19 @@
                 </div>
         </div>
         <div class="row">
-            <div class="input-field col s9">
+            <div class="input-field col s6">
                 <input id="assunto" type="text" class="validate" name="assunto">
                 <label for="assunto">Título da manifestação</label>
+            </div>
+            <div class="input-field col s3">
+                <select name="formaRecebimento">
+                    <option value="" disabled selected>Selecione a forma de recebimento</option>
+                    <option value="1">E-Ouv</option>
+                    <option value="2">E-mail</option>
+                    <option value="3">Telefone</option>
+                    <option value="4">Outros</option>
+                </select>
+                <label>Recebida por</label>
             </div>
             <div class="input-field col s3">
                 <select name="situacao">

@@ -104,7 +104,7 @@ function deletarManifestacao(id)
                 if(data == "ok")
                 {
                     alert("Manifestação deletada com sucesso.");
-                    window.location.reload();
+                    $(location).attr('href', '?page=dashboard');
                 }else{
                     alert(data);
                 }

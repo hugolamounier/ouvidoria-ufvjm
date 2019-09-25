@@ -17,7 +17,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="manifestacaoInfo <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
+    <div class="recebida_por blue-grey lighten-3"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
+    <div class="manifestacaoInfo z-depth-1 <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
         <div class='row'>
             <div class='col s1'><span>Cód. :</span> <span><?php echo $Manifestacao->getIdManifestacao() ?></span></div>
             <div class='col s2'><span>NUP:</span> <span>
@@ -73,7 +74,63 @@
             $listaPendencias = Pendencias::getListaPendencias($id, $db_conn);
             if($listaPendencias)
             {
+                while($row = $listaPendencias->fetch_array())
+                {
+                    switch($row["tipoPendencia"])
+                    {
+                        case 1:
+                            $color_class = "light-green darken-1";
+                        break;
+                        case 2:
+                            $color_class = "lime accent-3";
+                        break;
+                        case 3:
+                            $color_class = "cyan accent-4";
+                        break;
+                        case 4:
+                            $color_class = "yellow"; 
+                        break;
+                        case 5:
+                            $color_class = "deep-purple lighten-3";
+                        break;
+                        case 6:
+                            $color_class = "red darken-1";
+                        break;
+                        case 7:
+                            $color_class = "green darken-3";
+                        break;
+                        case 8:
+                            $color_class = "pink lighten-3";
+                        break;
 
+                    }
+
+                    if($row["tipoPendencia"] == 3)
+                    {
+                        $r = Pendencias::getParteEnvolvida($row["id"], $db_conn)->fetch_array();
+                        $encaminhadoPara = "para ".$r["encaminhadoPara"];
+                        $dataLimitePosicionamento = $r["dataLimitePosicionamento"];
+
+                        $html_datalimite = "<p><b>Data Limite:</b> ".Helper::converterMysqlDataToData($dataLimitePosicionamento)."</p>";
+
+                    }else{
+                        $encaminhadoPara = "";
+                        $dataEncaminhamento = "";
+                        $dataLimitePosicionamento = "";
+                        $html_datalimite = "";
+                    }
+
+                    echo("<div class='pendencia z-depth-1'>");
+                        echo("<div class='header $color_class'><span>".Pendencias::getNomePendencia($row['tipoPendencia'])." $encaminhadoPara</span> <span>".Helper::converterMysqlDataToData($row['dataPendencia'])."</span></div>");
+                        echo("<div class='info_body'>$html_datalimite<span>".$row['descricaoPendencia']."</span></div>");
+                        if(!empty($row['anexo']))
+                        {
+                            echo("<div class='footer grey lighten-3'>");
+                                echo("<a onclick=\"window.open('".$row['anexo']."', '_blank')\" class=\"tooltipped z-depth-0\" data-position=\"bottom\" data-tooltip=\"Baixar anexo\"><i class=\"material-icons\">attachment</i><span>Baixar Anexo</span></a>");
+                            echo("</div>");
+                        }
+                    echo("</div>");
+                }
             }else{
                 echo("<p style='text-align:center;'>Nenhuma ocorrência registrada para essa manifestação.</p>");
             }

@@ -15,6 +15,7 @@ class Manifestacoes{
     protected $infoExtra="";
     protected $proveniencia="";
     protected $topicoManifestacao="";
+    protected $formaRecebimento="";
 
 
     public function __construct($idManifestacao, $db_conn)
@@ -41,6 +42,7 @@ class Manifestacoes{
             $this->infoExtra = $row["infoExtra"];
             $this->proveniencia = $row["proveniencia"];
             $this->topicoManifestacao = $row["topicoManifestacao"];
+            $this->formaRecebimento = $row["formaRecebimento"];
         }
     }
 
@@ -145,6 +147,25 @@ class Manifestacoes{
         }
     }
 
+    public static function getNomeFormaRecebimento($formaRecebimento)
+    {
+        switch($formaRecebimento)
+        {
+            case 1:
+                return "E-Ouv";
+            break;
+            case 2:
+                return "E-mail";
+            break;
+            case 3:
+                return "Telefone";
+            break;
+            case 4:
+                return "Outros";
+            break;
+        }
+    }
+
     public static function listarManifestacoes($tipoManifestacao, $sort, $db_conn)
     {
 
@@ -188,7 +209,7 @@ class Manifestacoes{
             die("Tipo inexistente.");
         }
     }
-    public static function novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $db_conn)
+    public static function novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $db_conn)
     {
         if($nup != '' or NULL)
         {
@@ -201,11 +222,11 @@ class Manifestacoes{
             }   
         }
         //Insere os dados fornecidos
-        $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia, topicoManifestacao)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $sql =  $db_conn->prepare("INSERT INTO manifestacao (nup , tipoManifestacao , dataRecebimento , assunto , situacao, dataLimite, nomeDemandante, unidadeEnvolvida, emailDemandante, usuario, infoExtra, proveniencia, topicoManifestacao, formaRecebimento)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         //Evita o sql injection
-        $sql->bind_param("sississsssssi" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao);
+        $sql->bind_param("sississsssssii" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento);
         $sql->execute();
 
         if ($sql) {
@@ -226,16 +247,29 @@ class Manifestacoes{
             return false;
         }
     }
-    public static function deletarManifestacao($id, $db_conn)
+    public static function deletarManifestacao($idManifestacao, $db_conn)
     {
-        if (self::existeManifestacao($id, $db_conn)) {
-            $sql_1 = $db_conn->prepare("DELETE FROM manifestacao WHERE idManifestacao = ?");
-            $sql_1 ->bind_param("i" , $id);
-            $sql_1->execute();
-            if ($sql_1) {
-                return true;
-            }else{
-                return false;
+        if (self::existeManifestacao($idManifestacao, $db_conn))
+        {
+            $sql = $db_conn->prepare("select * from pendencias where idManifestacao=?");
+            $sql->bind_param("i", $idManifestacao);
+            $sql->execute();
+            if($sql)
+            {
+                $sql = $sql->get_result();
+                while($row = $sql->fetch_array())
+                {
+                    Pendencias::deletarPendencia($row["id"], $db_conn);
+                }
+
+                $sql_1 = $db_conn->prepare("DELETE FROM manifestacao WHERE idManifestacao = ?");
+                $sql_1 ->bind_param("i" , $idManifestacao);
+                $sql_1->execute();
+                if ($sql_1) {
+                    return true;
+                }else{
+                    return false;
+                }
             }
         }else{
             return false;
@@ -378,6 +412,14 @@ class Manifestacoes{
     public function getTopicoManifestacao()
     {
         return $this->topicoManifestacao;
+    }
+
+    /**
+     * Get the value of formaRecebimento
+     */ 
+    public function getFormaRecebimento()
+    {
+        return $this->formaRecebimento;
     }
 }
 ?>

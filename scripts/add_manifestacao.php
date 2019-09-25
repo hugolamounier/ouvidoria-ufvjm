@@ -16,7 +16,7 @@ $erros = array(); //Array com todos os erros
 	$infoExtra =  $_POST['infoExtra'];//Pega o 'infoExtra' do formulario
 	$proveniencia =  $_POST['proveniencia'];//Pega o 'proveniencia' do formulario
 	$topicoManifestacao = $_POST["topicoManifestacao"]; //Pega o tópico
-
+	$formaRecebimento = $_POST["formaRecebimento"];
 
 	//Tratamentos se os campos estiverem vazios
 	if (empty($tipoManifestacao)) {
@@ -30,7 +30,8 @@ $erros = array(); //Array com todos os erros
 		
 		}elseif (empty($situacao)) {
 			die("Existem campos que não podem ser vazios(Situação)");
-		
+		}elseif(empty($formaRecebimento)){
+			die("Existem campos que não podem ser vazios(Forma de Recebimento)");
 		}elseif (empty($dataLimite)) {
 			die("Existem campos que não podem ser vazio (Data Limite)");
 		
@@ -47,7 +48,7 @@ $erros = array(); //Array com todos os erros
 		}elseif (empty($topicoManifestacao)){
 			die("Existem campos que não podem ser vazios (Assunto)");
 		}else{
-			if (Manifestacoes::novaManifestacao($nup,$tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $db_conn)) {
+			if (Manifestacoes::novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $db_conn)) {
 				echo "ok";
 			}else{
                 echo("Dados não enviados ao BD");
