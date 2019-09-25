@@ -60,7 +60,7 @@ class Manifestacoes{
                 return "Complementada";
             break;
             case 4:
-                return "Encaminhada por Outra Ouvidoria";
+                return "Encaminhada";
             break;
             case 5:
                 return "Prorrogada";

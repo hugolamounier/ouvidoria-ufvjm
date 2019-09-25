@@ -22,7 +22,7 @@ if(isset($_GET["p"]))
                     echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                     echo("<div class=\"col s2\"><span>NUP:</span> <p>".($row["nup"]==''?("---") : ($row["nup"]))."</p></div>");
                     echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p >".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                    echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                    echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                     echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                     echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                 echo("</div>");
@@ -43,7 +43,7 @@ if(isset($_GET["p"]))
                     echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                     echo("<div class=\"col s2\"><span>NUP:</span> <p>".($row["nup"]==''?("---") : ($row["nup"]))."</p></div>");
                     echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p >".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                    echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                    echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                     echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                     echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                 echo("</div>");
@@ -62,7 +62,7 @@ if(isset($_GET["p"]))
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
                         echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p class=\"orange-text text-darken-1\">".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                        echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                        echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                         echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                         echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                     echo("</div>");
@@ -79,7 +79,7 @@ if(isset($_GET["p"]))
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
                         echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p class=\"orange-text text-darken-1\">".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                        echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                        echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                         echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                         echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                     echo("</div>");
@@ -96,7 +96,7 @@ if(isset($_GET["p"]))
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
                         echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p class=\"orange-text text-darken-1\">".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                        echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                        echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                         echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                         echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                     echo("</div>");
@@ -113,7 +113,7 @@ if(isset($_GET["p"]))
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
                         echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p class=\"orange-text text-darken-1\">".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                        echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                        echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                         echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                         echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                     echo("</div>");
@@ -130,7 +130,7 @@ if(isset($_GET["p"]))
                         echo("<div class=\"col s1\"><span>Cód.:</span> <p>".$row["idManifestacao"]."</p></div>");
                         echo("<div class=\"col s2\"><span>NUP:</span> <p>".$row["nup"]."</p></div>");
                         echo("<div class=\"col s2\"><span>Estado da Manifestação:</span> <p class=\"orange-text text-darken-1\">".Manifestacoes::getStatusName($row["situacao"], $db_conn)."</p></div>");
-                        echo("<div class=\"col s3\"><span>Título:</span> <p>".$row["assunto"]."</p></div>");
+                        echo("<div class=\"col s3\"><span>Título:</span> <p>".substr($row["assunto"], 0, 40)."...</p></div>");
                         echo("<div class=\"col s2\"><span>Data de Recebimento:</span> <p>".Helper::converterMysqlDataToData($row["dataRecebimento"])."</p></div>");
                         echo("<div class=\"col s1\"><span>Data Limite:</span> <p>".Helper::converterMysqlDataToData($row["dataLimite"])."</p></div>");
                     echo("</div>");

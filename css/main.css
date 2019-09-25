@@ -89,7 +89,7 @@ ul.dropdown-content.select-dropdown li span { color: #424242; }
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row {margin: 0; padding: 0;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col{padding: 0;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col span{font-size: 11px; padding: 7px 5px 0 5px; display: block;}
-.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col p{ margin: 0; padding: 0 5px 0 8px; display: block; font-size: 13px;
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col p{ margin: 0; padding: 0 5px 0 8px; font-size: 13px;
 font-weight: bold; color: #424242 ;
 }
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes:hover{ background: #fff8e1 ;}
@@ -123,12 +123,17 @@ margin: 0 0 20px 0; padding: 20px 10px 20px 10px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .footer a>i{color:#9e9e9e; font-size: 25px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .footer a>span{color:#424242; font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 0 0 0 5px;}
 
-.wrapper .cnt .pendencias_wrapper .division{width: 99%;height: 1px; border-top:1px solid #eeeeee;; margin: 10px auto 10px auto;}
+
+/* Relatórios */
+.wrapper .cnt .report_box{width: calc(100% - 15px); min-height: 50px; margin: 0 auto 20px auto; overflow: hidden; -webkit-border-radius: 3px;-moz-border-radius: 3px;
+border-radius: 3px;} 
+.wrapper .cnt .report_box .box_title{width: 100%; margin: 10px 0 10px 0;}
+.wrapper .cnt .report_box .box_title span{font-size: 14px; font-weight: bold; padding: 0 10px 0 10px;}
+
+
+.wrapper .cnt .pendencias_wrapper .division{width: 99%;height: 1px; border-top:1px solid #eeeeee; margin: 10px auto 10px auto;}
 /* login */
-.login{width:95%; height: 320px; background: #ffffff   ;
-     -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;
-    margin:10px auto 10px auto;
-    }
+.login{width:95%; height: 320px; background: #ffffff; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; margin:10px auto 10px auto;}
 .login .loginInfo{width: 90%; margin: 20px auto 0 auto;}
 .login .loginInfo a{font-weight: bold;}
 

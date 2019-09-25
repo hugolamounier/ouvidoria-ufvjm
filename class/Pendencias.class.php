@@ -100,7 +100,7 @@ class Pendencias{
 
     public static function getListaPendencias($idManifestacao, $db_conn)
     {
-        $sql = $db_conn->prepare("select * from pendencias where idManifestacao=? order by dataPendencia ASC");
+        $sql = $db_conn->prepare("select * from pendencias where idManifestacao=? order by id ASC");
         $sql->bind_param("i", $idManifestacao);
         $sql->execute();
         $sql = $sql->get_result();

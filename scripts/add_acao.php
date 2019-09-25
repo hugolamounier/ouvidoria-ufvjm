@@ -18,7 +18,14 @@
         $_UP['erros'][4] = 'Não foi feito o upload do arquivo';
 
 
-  
+        $sql_num = $db_conn->prepare("select count(*) as totalAcao from pendencias where idManifestacao=?");
+        $sql_num->bind_param("i", $idManifestacao);
+        $sql_num->execute();
+
+        $sql_num = $sql_num->get_result();
+        $r = $sql_num->fetch_array();
+        $totalAcao = $r["totalAcao"];
+        $totalAcao++;
     
         if($tipoPendencia == 3){
             if (isset($_POST['encaminhadoPara']) && isset($_POST['dataEncaminhamento'])  && isset($_POST['dataLimitePosicionamento'])) {
@@ -26,7 +33,7 @@
                 $dataEncaminhamento = $_POST['dataEncaminhamento'];
                 $dataLimitePosicionamento = $_POST['dataLimitePosicionamento'];
 
-                $anexoFileName = $idManifestacao." - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
+                $anexoFileName = $idManifestacao.".$totalAcao - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
                 if(!empty($path))
                 {
                     if ($_FILES['arquivo']['error'] != 0) {
@@ -59,7 +66,7 @@
                 }                
             }
         }else{
-            $anexoFileName = $idManifestacao." - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
+            $anexoFileName = $idManifestacao.".$totalAcao - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
                 if(!empty($path))
                 {
                     if ($_FILES['arquivo']['error'] != 0) {

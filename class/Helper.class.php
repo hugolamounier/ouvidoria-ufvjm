@@ -16,7 +16,11 @@ class Helper{
     }
     public static function converterMysqlDataToData($mysqlDate)
     {
-        return substr($mysqlDate, 8, 2)."/".substr($mysqlDate, 5, 2)."/".substr($mysqlDate, 0, 4);
+        if($mysqlDate == "0000-00-00"){
+            return "---";
+        }else{
+            return substr($mysqlDate, 8, 2)."/".substr($mysqlDate, 5, 2)."/".substr($mysqlDate, 0, 4);
+        }
     }
     public static function isLogged($db_conn)
     {
