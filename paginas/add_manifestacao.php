@@ -51,7 +51,7 @@
                     <option value="1">Cadastrada</option>
                     <option value="2">Complementação Solicitada</option>
                     <option value="3">Complementada</option>
-                    <option value="4">Encaminhada por Outra Ouvidoria</option>
+                    <option value="4">Encaminhada</option>
                     <option value="5">Prorrogada</option>
                     <option value="6">Arquivada</option>
                     <option value="7">Concluída</option>

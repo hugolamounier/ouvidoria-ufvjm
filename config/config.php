@@ -13,6 +13,8 @@ require_once("class/User.class.php");
 require_once("class/Helper.class.php");
 require_once("class/Manifestacoes.class.php");
 require_once("class/Pendencias.class.php");
+require_once("class/Relatorios.class.php");
+require_once("class/Graficos.class.php");
 
 $config["website_title"] = "Sistema de Gestão - Ouvidoria";
 

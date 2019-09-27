@@ -147,6 +147,19 @@ class Manifestacoes{
         }
     }
 
+    public static function getCorStatusManifestacao($situacao)
+    {
+        switch($situacao)
+        {
+            case 7:
+                return "green-text text-accent-4";
+            break;
+            default:
+                return "blue-grey-text";
+            break;
+        }
+    }
+
     public static function getNomeFormaRecebimento($formaRecebimento)
     {
         switch($formaRecebimento)

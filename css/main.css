@@ -125,10 +125,16 @@ margin: 0 0 20px 0; padding: 20px 10px 20px 10px;}
 
 
 /* Relatórios */
-.wrapper .cnt .report_box{width: calc(100% - 15px); min-height: 50px; margin: 0 auto 20px auto; overflow: hidden; -webkit-border-radius: 3px;-moz-border-radius: 3px;
-border-radius: 3px;} 
+.wrapper .cnt .report_box{width: 100%; min-height: 50px; margin: 0 auto 20px auto; overflow: hidden; -webkit-border-radius: 3px;-moz-border-radius: 3px;
+border-radius: 3px; background: #fff;} 
 .wrapper .cnt .report_box .box_title{width: 100%; margin: 10px 0 10px 0;}
 .wrapper .cnt .report_box .box_title span{font-size: 14px; font-weight: bold; padding: 0 10px 0 10px;}
+.wrapper .cnt .report_box #chartManifestacoes{width: 100%; height: 300px; margin: 0 0 10px 0;}
+.wrapper .cnt .report_box #chartAssuntos{width: 100%; height: 300px; margin: 0 0 10px 0;}
+.wrapper .cnt .report_box #chartOrigem{width: 100%; height: 280px; margin: 0 0 10px 0;}
+.wrapper .cnt .report_box #chartProveniencia{width: 100%; height: 280px; margin: 0 0 10px 0;}
+.wrapper .cnt .report_box #chartSituacao{width: 100%; height: 330px; margin: 0 0 10px 0;}
+
 
 
 .wrapper .cnt .pendencias_wrapper .division{width: 99%;height: 1px; border-top:1px solid #eeeeee; margin: 10px auto 10px auto;}
