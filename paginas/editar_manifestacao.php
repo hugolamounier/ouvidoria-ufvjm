@@ -128,7 +128,7 @@
 
 
     $("#formManifestacao").on("click", "a", function(){
-        postForm("scripts/add_manifestacao.php", "formManifestacao");
+        postForm("scripts/editar_manifestacao.php", "formManifestacao");
     });
 
   });

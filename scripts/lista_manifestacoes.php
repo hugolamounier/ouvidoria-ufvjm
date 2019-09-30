@@ -1,8 +1,12 @@
 <?php
 require("../config/config_scripts.php");
 
-$tipoManifestacao = $_GET["tipo"];
-$filtro = $_GET["sort"];
+if(isset($_GET["tipo"]))
+{
+    $tipoManifestacao = $_GET["tipo"];
+}else{
+    $tipoManifestacao = '';
+}
 
 if(isset($_GET["p"]))
 {
@@ -17,9 +21,9 @@ if(isset($_GET["p"]))
     {
         while($row = $resutlado_pesquisa->fetch_array())
         {
-            if(strlen($row["assunto"]) > 40)
+            if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -38,15 +42,21 @@ if(isset($_GET["p"]))
     
 }else{
     sempesquisa:
-    if($tipoManifestacao == '')
+    if(isset($_GET["sort"]))
     {
-        $lista = Manifestacoes::listarManifestacoes('', '', $db_conn);
+        $filtro = $_GET["sort"];
+    }else{
+        $filtro = '';
+    }
+    if($tipoManifestacao == '' || $tipoManifestacao == 0)
+    {
+        $lista = Manifestacoes::listarManifestacoes('', $filtro, $db_conn);
         echo("<div class=\"group_title blue-grey-text\"><span>Lista de demandas</span></div>");
         while($row = $lista->fetch_array())
         {
-            if(strlen($row["assunto"]) > 40)
+            if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -65,13 +75,13 @@ if(isset($_GET["p"]))
         switch($tipoManifestacao)
         {
             case 1:
-            $denuncia = Manifestacoes::listarManifestacoes(1, '', $db_conn);
+            $denuncia = Manifestacoes::listarManifestacoes(1, $filtro, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Denúncia</span></div>");
             while($row = $denuncia->fetch_array())
             {
-                if(strlen($row["assunto"]) > 40)
+                if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -88,13 +98,13 @@ if(isset($_GET["p"]))
             }
             break;
             case 2:
-            $reclamacao = Manifestacoes::listarManifestacoes(2, '', $db_conn);
+            $reclamacao = Manifestacoes::listarManifestacoes(2, $filtro, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Reclamação</span></div>");
             while($row = $reclamacao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 40)
+                if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -111,13 +121,13 @@ if(isset($_GET["p"]))
             }
             break;
             case 3:
-            $solicitacao = Manifestacoes::listarManifestacoes(3, '', $db_conn);
+            $solicitacao = Manifestacoes::listarManifestacoes(3, $filtro, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Solicitação</span></div>");
             while($row = $solicitacao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 40)
+                if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -134,13 +144,13 @@ if(isset($_GET["p"]))
             }
             break;
             case 4:
-            $sugestao = Manifestacoes::listarManifestacoes(4, '', $db_conn);
+            $sugestao = Manifestacoes::listarManifestacoes(4, $filtro, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Sugestão</span></div>");
             while($row = $sugestao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 40)
+                if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'],0,40)."...";
+                    $titulo = substr($row['assunto'],0,38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -157,13 +167,13 @@ if(isset($_GET["p"]))
             }
             break;
             case 5:
-            $elogio = Manifestacoes::listarManifestacoes(5, '', $db_conn);
+            $elogio = Manifestacoes::listarManifestacoes(5, $filtro, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Elogio</span></div>");
             while($row = $elogio->fetch_array())
             {
-                if(strlen($row["assunto"]) > 40)
+                if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'], 0, 40)."...";
+                    $titulo = substr($row['assunto'], 0, 38)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }

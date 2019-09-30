@@ -1,5 +1,6 @@
 function login(url, formId)
 {
+    loadLogin();
     $.ajax({
         url: 'scripts/login.php',
         type: 'POST',
@@ -8,26 +9,31 @@ function login(url, formId)
         {
             if(data == "ok")
             {
+                closeLoadLogin();
                 window.location.reload();
             }else{
                 alert(data);
+                closeLoadLogin();
             }
         }
     });
 }
 function loadScript(url, container)
 {
+    showLoading();
     $.ajax({
         url: url,
         type: 'GET',
         success: function(data)
         {
+            closeLoading();
             $("#"+container).html(data);
         }
     });
 }
 function postForm(url, formId)
 {
+    showLoading();
     $.ajax({
         url: url,
         type: 'POST',
@@ -37,9 +43,11 @@ function postForm(url, formId)
             if(data == "ok")
             {
                 alert("Dados inseridos com sucesso.");
+                closeLoading();
                 $(location).attr('href', '?page=dashboard');
             }else{
                 alert(data);
+                closeLoading();
             }
         }
     });
@@ -58,6 +66,19 @@ function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
     }
+};
+function getUrlHash(hashName) {
+    var sPageURL = window.location.hash.substr(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+    
+            if (sParameterName[0] === hashName) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
 };
 
 function createFloatingWindow(windowTitle, width, height)
@@ -79,6 +100,7 @@ function destroyFloatingWindow()
 }
 function loadPageOnWindow(windowTitle, width, height, url)
 {
+    showLoading();
     $.ajax({
         url: url,
         type: 'GET',
@@ -88,6 +110,7 @@ function loadPageOnWindow(windowTitle, width, height, url)
             $("#floatingWindow .floatingWindowContent").html(data);
             $("#floatingWindow").resizable();
             $("#floatingWindow").draggable();
+            closeLoading();
         }
     });
 }
@@ -96,6 +119,7 @@ function deletarManifestacao(id)
     var conf = "Tem certeza que deseja excluir a manifestação de Id '"+id+"'?";
     if(confirm(conf))
     {
+        showLoading();
         $.ajax({
             url: "scripts/deletar_manifestacao.php?id="+id,
             type: 'POST',
@@ -104,11 +128,29 @@ function deletarManifestacao(id)
                 if(data == "ok")
                 {
                     alert("Manifestação deletada com sucesso.");
+                    closeLoading();
                     $(location).attr('href', '?page=dashboard');
                 }else{
                     alert(data);
+                    closeLoading();
                 }
             }
         });
     }
+}
+function showLoading()
+{
+    $('#loadingCnt').fadeIn(300);
+}
+function closeLoading()
+{
+    $('#loadingCnt').fadeOut(300);
+}
+function loadLogin()
+{
+    $("#loginLoading").html('<div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+}
+function closeLoadLogin()
+{
+    $("#loginLoading").html('');
 }

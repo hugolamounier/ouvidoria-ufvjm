@@ -240,6 +240,7 @@ class Graficos{
             array("label"=> "Gestão", "y"=> $totalGestao),
             array("label"=> "Acesso à Graduação", "y"=> $totalAcesso),
             array("label"=> "Assistência Estudantil", "y"=> $totalAssistencia),
+            array("label"=> "Legislação e Normas", "y"=> $totalNormas),
             array("label"=> "Concursos", "y"=> $totalConcursos),
             array("label"=> "Outros", "y"=> $totalOutros),
 

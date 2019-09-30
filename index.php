@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title><?php echo($config["website_title"]); ?></title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/materialize.min.css">
+<link href="css/icon.css" rel="stylesheet">
 <link rel="stylesheet" href="css/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -17,7 +17,7 @@
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type='text/javascript' src='js/jquery.inputmask.min.js'></script>
 <script type='text/javascript' src='js/jquery-ui.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/materialize.min.js"></script>
 <script type='text/javascript' src='js/main.js'></script>
 </head>
 
@@ -56,6 +56,12 @@
         include("paginas/login.php");
     }
 ?>
+</div>
+
+<div id="loadingCnt">
+    <div class="loadingWrapper">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 </div>
 
 </body>

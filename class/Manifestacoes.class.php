@@ -182,9 +182,10 @@ class Manifestacoes{
     public static function listarManifestacoes($tipoManifestacao, $sort, $db_conn)
     {
 
-        if($tipoManifestacao == '' or null)
+        
+        if($sort == '' or null)
         {
-            if($sort == '' or null)
+            if($tipoManifestacao == '' or null)
             {
                 $sql = $db_conn->prepare("select * from manifestacao order by idManifestacao DESC");
                 $sql->execute();
@@ -193,19 +194,61 @@ class Manifestacoes{
 
                 return $sql;
             }else{
-                switch($sort)
-                {
+                $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC");
+                $sql->bind_param("i", $tipoManifestacao);
+                $sql->execute();
 
-                }
+                $sql = $sql->get_result();
+
+                return $sql;
             }
         }else{
-            $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC");
-            $sql->bind_param("i", $tipoManifestacao);
-            $sql->execute();
+            if($tipoManifestacao == 0)
+            {
+                switch($sort)
+                {
+                    case "datalimiteAsc":
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite ASC");
+                    break;
+                    case "datalimiteDesc":
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite DESC");
+                    break;
+                    case "datarecebimentoAsc":
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento ASC");
+                    break;
+                    case "datarecebimentoDesc":
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento DESC");
+                    break;
+                }
+                $sql->execute();
+                $sql = $sql->get_result();
 
-            $sql = $sql->get_result();
+                return $sql;
+            }else{
+                switch($sort)
+                {
+                    case "datalimiteAsc":
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite ASC");
+                        $sql->bind_param("i", $tipoManifestacao);
+                    break;
+                    case "datalimiteDesc":
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite DESC");
+                        $sql->bind_param("i", $tipoManifestacao);
+                    break;
+                    case "datarecebimentoAsc":
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento ASC");
+                        $sql->bind_param("i", $tipoManifestacao);
+                    break;
+                    case "datarecebimentoDesc":
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento DESC");
+                        $sql->bind_param("i", $tipoManifestacao);
+                    break;
+                }
+                $sql->execute();
+                $sql = $sql->get_result();
 
-            return $sql;
+                return $sql;
+            }
         }
     }
     public static function getManifestacaoTypeName($intCode, $db_conn)

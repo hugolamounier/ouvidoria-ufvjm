@@ -11,6 +11,7 @@ function grafico(dataPoints, colorArray, chartContainer, titulo, subtitulo, tipo
 			text: subtitulo
         }],
 		data: [{
+			cursor: "pointer",
 			type: tipo,
 			showInLegend: "true",
             legendText: "{label}",
