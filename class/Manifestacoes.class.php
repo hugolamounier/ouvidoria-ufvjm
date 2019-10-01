@@ -77,6 +77,49 @@ class Manifestacoes{
         }
     }
 
+    public static function totalManifestacoes($tipo, $db_conn)
+    {
+        switch($tipo)
+        {
+            case 0:
+            $sql = $db_conn->prepare("SELECT * from manifestacao");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 1:
+            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 1");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 2:
+            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 2");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 3:
+            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 3");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 4:
+            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 4");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 5:
+            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 5");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+        }
+    }
+
     public static function getProvenienciaNome($id, $db_conn)
     {
         $sql = $db_conn->prepare("select * from proveniencia where id = ?");
@@ -332,7 +375,7 @@ class Manifestacoes{
         }
     }
 
-    public static function pesquisarManifestacao ($pesquisa, $db_conn){
+    public static function pesquisarManifestacao($pesquisa, $db_conn){
 
         $p = "%$pesquisa%";
         $sql =  $db_conn->prepare("SELECT * FROM manifestacao WHERE nup = ? OR idManifestacao = ?");
@@ -349,7 +392,7 @@ class Manifestacoes{
             $sql_1->execute();
             $sql_1 = $sql_1->get_result();
 
-            if ($sql_1->num_rows >0) { //Caso ache algo
+            if ($sql_1->num_rows >0) {
                return $sql_1;
             }else{
                 return false;
@@ -358,6 +401,43 @@ class Manifestacoes{
         }
     }
 
+    public static function editarManifestacao($id, $db_conn){
+        $sql = $db_conn->prepare("SELECT * FROM manifestacao WHERE idManifestacao = ?");
+        $sql->bind_param("i" , $id);
+        $sql->execute();
+        $sql = $sql->get_result();
+    
+    
+        if ($sql->num_rows > 0) {
+
+                    $nup = $_POST["nup"];
+                    $tipoManifestacao = $_POST["tipoManifestacao"];
+                    $dataRecebimento = Helper::converterDataToMysqlData($_POST["dataRecebimento"]);
+                    $assunto = $_POST["assunto"];
+                    $situacao = $_POST["situacao"];
+                    $dataLimite = Helper::converterDataToMysqlData($_POST["dataLimite"]);
+                    $nomeDemandante = $_POST["nomeDemandante"];
+                    $unidadeEnvolvida = $_POST["unidadeEnvolvida"];
+                    $emailDemandante = $_POST["emailDemandante"];
+                    $infoExtra = $_POST["infoExtra"];
+                    $proveniencia = $_POST["proveniencia"];
+                    $formaRecebimento = $_POST["formaRecebimento"];
+                    $unidadeEnvolvida = $_POST["unidadeEnvolvida"];
+                    $topicoManifestacao = $_POST["topicoManifestacao"];
+    
+                    $sql_1 =$db_conn->prepare("UPDATE manifestacao SET nup=?, tipoManifestacao=?, dataRecebimento=?, assunto=?, situacao=?,dataLimite=?, nomeDemandante=?, unidadeEnvolvida=?, emailDemandante=?, infoExtra=?, proveniencia=?, topicoManifestacao=?, formaRecebimento=? WHERE idManifestacao = ?");
+                    $sql_1->bind_param("sississsssiiii" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $id);
+                    $sql_1->execute();
+                    if($sql_1) {
+                        return true;
+            
+                    }else{
+                        return false;
+                    }
+            }
+    
+    
+        }
     /**
      * Get the value of proveniencia
      */ 

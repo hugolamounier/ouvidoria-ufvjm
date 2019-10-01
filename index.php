@@ -37,7 +37,8 @@
     <?php include("menu.php"); ?>
     <div id="indexCnt" class="cnt">
     <?php
-        $User = new User($_SESSION["login"], $_SESSION["senha"], $db_conn);
+        $User = new User($_SESSION["logged_user"], $_SESSION["logged_password"], $db_conn);
+        $autoridade = $User->getUserAutoridade();
         if(isset($_GET["page"]))
         {
             if(file_exists("paginas/".$_GET["page"].".php"))
