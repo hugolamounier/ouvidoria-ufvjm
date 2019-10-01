@@ -99,7 +99,6 @@ function destroyFloatingWindow()
 }
 function loadPageOnWindow(windowTitle, width, height, url)
 {
-    showLoading();
     $.ajax({
         url: url,
         type: 'GET',
@@ -109,7 +108,6 @@ function loadPageOnWindow(windowTitle, width, height, url)
             $("#floatingWindow .floatingWindowContent").html(data);
             $("#floatingWindow").resizable();
             $("#floatingWindow").draggable();
-            closeLoading();
         }
     });
 }
