@@ -7,6 +7,8 @@ class Helper{
         if ($connection->connect_error) {
             die("Erro ao conectar ao banco de dados.");
             }else{
+        $connection = new MySQLi($db_server, $db_username, $db_password, $db_name);
+                mysqli_set_charset($connection,"utf8");
                 return $connection;
         }
     }

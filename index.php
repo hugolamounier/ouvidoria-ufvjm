@@ -36,6 +36,7 @@
 ?>
     <?php include("menu.php"); ?>
     <div id="indexCnt" class="cnt">
+    <div id="print"></div>
     <?php
         $User = new User($_SESSION["logged_user"], $_SESSION["logged_password"], $db_conn);
         $autoridade = $User->getUserAutoridade();
@@ -64,7 +65,6 @@
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
 </div>
-
 </body>
 <script>
     $(document).ready(function(){

@@ -1,4 +1,4 @@
-<div class='fullReportWrapper'>
+<div id='fullReportWrapper' class='fullReportWrapper'>
     <div class='row'>
         <div class='col s5'>
             <div class='report_box z-depth-1 white'>
@@ -45,7 +45,14 @@
             <div class='report_box z-depth-1 white'>
                 <div class='box_title blue-grey-text text-darken-1'><span>Detalhes sobre Situação das Manifestações</span></div>
                 <div class="content">
-                    <div class='item'><span style='font-size:15px;'></div></div>
+                <div class='item'><span class='red-text text-darken-3' style='padding:0 0 0 10px;'>Cadastradas:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(1, $db_conn), 0, ',', '.');?></span></div>
+                    <div class='item'><span class='blue-text text-darken-2' style='padding:0 0 0 10px;'>Complementação Solicitada:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(2, $db_conn), 0, ',', '.');?></span></div>
+                    <div class='item'><span class='green-text text-darken-1' style='padding:0 0 0 10px;'>Complementados:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(3, $db_conn), 0, ',', '.');?></span></div>
+                    <div class='item'><span class='yellow-text text-darken-3' style='padding:0 0 0 10px;'>Encaminhado por outra Ouvidoria:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(4, $db_conn), 0, ',', '.'); ?></span></div>
+                    <div class='item'><span class='orange-text text-darken-3' style='padding:0 0 0 10px;'>Prorrogado:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(5, $db_conn), 0, ',', '.'); ?></span></div>
+                    <div class='item'><span class='amber-text text-darken-4' style='padding:0 0 0 10px;'>Arquivado:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(6, $db_conn), 0, ',', '.');?></span></div>
+                    <div class='item'><span class='purple-text text-darken-2' style='padding:0 0 0 10px;'>Concluido:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(7, $db_conn), 0, ',', '.'); ?></span></div>
+                    <div class='item'><span class='indigo-text text-accent-1' style='padding:0 0 0 10px;'>Encaminhado para Orgão externo/encerrado:</span> <span><?php echo number_format(Manifestacoes::totalSituacao(8, $db_conn), 0, ',', '.');?></span></div>
                 </div>
             </div>
         </div>

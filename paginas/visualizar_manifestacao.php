@@ -17,7 +17,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="recebida_por blue-grey lighten-3"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
+    <div class="recebida_por blue-grey lighten-3 z-depth-1"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
+    <div class='prorrogarBtn'><a onclick="location.href='?page=add_manifestacao'" class="waves-effect waves-light btn blue-grey lighten-3 hoverable"><i class="material-icons left">date_range</i>Prorrogar Manifestação</a></div>
     <div class="manifestacaoInfo z-depth-1 <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
         <div class='row'>
             <div class='col s1'><span>Cód. :</span> <span><?php echo $Manifestacao->getIdManifestacao() ?></span></div>

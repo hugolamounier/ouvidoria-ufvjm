@@ -1,0 +1,25 @@
+
+.printReport{width: 21cm; height: 29.7cm; padding: 10px 10px 10px 10px; background: #fff; margin: 0 auto 0 auto;}
+.printReport .pageTitle{width: 100%;height: 40px; border-bottom: 4px solid #78909c; margin: 0;}
+.printReport .pageTitle span{font-size: 25px; font-weight: bold; padding: 0 0 0 10px;}
+.printReport .wrapper{width: 100%; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; padding: 30px 0 0 0 ;
+}
+.printReport .box{width: 100%; min-height: 100px;}
+.printReport .box .title{padding: 0 0 0 10px; margin: 0 0 15px 0; }
+.printReport .box .title span{font-weight: bold; font-size: 16px;}
+.printReport .box .subtitle{padding: 0 0 0 20px; margin: 0 0 10px 0;}
+.printReport .box .subtitle span{font-weight: bold; font-size: 14.5px;}
+.printReport .box .subtitle span:nth-of-type(2){font-weight: normal;}
+.printReport .box .item{width: 100%; padding: 0 20px 0 30px; margin: 0 0 5px 0;}
+.printReport .box .item span:first-of-type{font-weight: bold; font-size: 14.5px;}
+.printReport .box .item span:nth-of-type(2){font-size: 13.5px;}
+.printReport .row{padding: 0; margin: 0;}
+
+
+.right_border{border-right: 1px solid #e0e0e0;}
+.left_border{border-left: 1px solid #e0e0e0;}
+.bottom_border{border-bottom: 1px solid #e0e0e0;}
+.divisor{width: 100%; height: 1px; border-bottom:1px solid #e0e0e0 ;}
+
+#chartManifestacoes{width: 100%; height: 300px; margin: 0 0 10px 0;}
+#chartSituacao{width: 100%; height: 330px; margin: 0 0 10px 0;}

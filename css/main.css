@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@media print {
+  /* Hide everything in the body when printing... */
+  body.printing * { display: none; }
+  /* ...except our special div. */
+  body.printing #fullReportWrapper { display: block; }
+}
+
 html{background: #fafafa ; padding: 0; margin: 0; color: #424242;}
 body{margin: 0; padding: 0; font-family: 'Open Sans', sans-serif;}
 
 .wrapper{width: 100%;margin: 0; padding: 0; position: relative;}
 
 .division{width: 91%;height: 1px; border-top:1px solid #bbdefb; margin: 10px auto 10px auto;}
-
 
 /* Dashboard */
 .wrapper .menu_wrapper{width:230px;height: 100vh; float: left; position: relative;}
@@ -90,16 +96,18 @@ ul.dropdown-content.select-dropdown li span { color: #424242; }
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row {margin: 0; padding: 0;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col{padding: 0;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col span{font-size: 11px; padding: 7px 5px 0 5px; display: block;}
-.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col p{ margin: 0; padding: 0 5px 0 8px; font-size: 13px;
-font-weight: bold; color: #424242 ;
-}
+.wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col p{ margin: 0; padding: 0 5px 0 8px; font-size: 12.5px;
+font-weight: bold; color: #424242; overflow: hidden;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes:hover{ background: #fff8e1 ;}
 
 
 /* Visualizar Manifestação */
 .wrapper .cnt .recebida_por{ width: 100px; height: 40px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
-display: flex; justify-content: center; margin: 0 0 15px 0; align-items: center;}
+display: inline-flex; justify-content: center; margin: 0 15px 15px 0; align-items: center;}
 .wrapper .cnt .recebida_por span{font-size: 16px; text-transform: uppercase; color: #fff; font-weight: bold;text-shadow: #424242 1px 1px 1px;}
+.wrapper .cnt .prorrogarBtn{width: 280px;height: 40px; display: inline-flex;margin: 0 15px 15px 0;}
+.wrapper .cnt .prorrogarBtn>a{font-weight: bold;}
+
 
 .wrapper .cnt .manifestacaoInfo{width: 100%; margin: 0 auto 0 auto; background: #eeeeee;-webkit-border-top-left-radius: 10px; 
 -webkit-border-top-right-radius: 10px; -moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px; border-top-left-radius: 10px;

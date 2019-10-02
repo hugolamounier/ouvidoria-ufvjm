@@ -76,6 +76,63 @@ class Manifestacoes{
             break;
         }
     }
+    
+    public static function totalSituacao($tipo, $db_conn)
+    {
+        switch($tipo)
+        {
+        
+            case 1:     //Cadastrado
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 1");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 2:     //Complementação Solicitada
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 2");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 3:  //Complementado
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 3");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 4:    //Encaminhado por outra Ouvidoria
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 4");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 5:  //Prorrogado
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 5");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 6:   //Arquivad 
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 6");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 7:  //Concluido
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 7");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            case 8:   //Encaminhado para Orgão externo/encerrado
+            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 8");
+            $sql ->execute();
+            $sql = $sql->get_result();
+            return $sql->num_rows;
+            break;
+            
+        }
+    }
 
     public static function totalManifestacoes($tipo, $db_conn)
     {
