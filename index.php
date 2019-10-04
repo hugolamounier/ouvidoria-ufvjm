@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="css/jquery-ui.min.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon"> 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type='text/javascript' src='js/jquery.inputmask.min.js'></script>

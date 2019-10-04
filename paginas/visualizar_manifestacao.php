@@ -18,7 +18,7 @@
 </div>
 <div class="container">
     <div class="recebida_por blue-grey lighten-3 z-depth-1"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
-    <div class='prorrogarBtn'><a onclick="location.href='?page=add_manifestacao'" class="waves-effect waves-light btn blue-grey lighten-3 hoverable"><i class="material-icons left">date_range</i>Prorrogar Manifestação</a></div>
+    <div class='prorrogarBtn'><a data-tooltip="Prorrogar" class="waves-effect waves-light btn blue-grey lighten-3 hoverable"><i class="material-icons left">date_range</i>Prorrogar Manifestação</a></div>
     <div class="manifestacaoInfo z-depth-1 <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
         <div class='row'>
             <div class='col s1'><span>Cód. :</span> <span><?php echo $Manifestacao->getIdManifestacao() ?></span></div>
@@ -103,6 +103,9 @@
                         case 8:
                             $color_class = "pink lighten-3";
                         break;
+                        case 9:
+                            $color_class = "purple accent-4";
+                        break;
 
                     }
 
@@ -122,14 +125,20 @@
                     }
 
                     echo("<div class='pendencia z-depth-1'>");
-                        echo("<div class='header $color_class'><span>".Pendencias::getNomePendencia($row['tipoPendencia'])." $encaminhadoPara</span> <span>".Helper::converterMysqlDataToData($row['dataPendencia'])."</span></div>");
-                        echo("<div class='info_body'>$html_datalimite<span>".$row['descricaoPendencia']."</span></div>");
-                        if(!empty($row['anexo']))
-                        {
-                            echo("<div class='footer grey lighten-3'>");
-                                echo("<a onclick=\"window.open('".$row['anexo']."', '_blank')\" class=\"tooltipped z-depth-0\" data-position=\"bottom\" data-tooltip=\"Baixar anexo\"><i class=\"material-icons\">attachment</i><span>Baixar Anexo</span></a>");
-                            echo("</div>");
-                        }
+                        echo("<div class='left'>");
+                            echo("<div class='header $color_class'><span>".Pendencias::getNomePendencia($row['tipoPendencia'])." $encaminhadoPara</span> <span>".Helper::converterMysqlDataToData($row['dataPendencia'])." </span></div>");
+                            echo("<div class='info_body'>$html_datalimite<span>".$row['descricaoPendencia']."</span></div>");
+                            if(!empty($row['anexo']))
+                            {
+                                echo("<div class='footer grey lighten-3'>");
+                                    echo("<a onclick=\"window.open('".$row['anexo']."', '_blank')\" class=\"tooltipped z-depth-0\" data-position=\"bottom\" data-tooltip=\"Baixar anexo\"><i class=\"material-icons\">attachment</i><span>Baixar Anexo</span></a>");
+                                    echo("");
+                                echo("</div>");
+                            }
+                        echo("</div>");
+                        echo("<div class='right z-depth-2'>");
+                            echo("<a onclick=\"\" class=\"tooltipped\" data-position=\"bottom\" data-tooltip=\"Deletar Ação\"><i class=\"material-icons\">delete</i></a>");
+                        echo("</div>");
                     echo("</div>");
                 }
             }else{
@@ -145,6 +154,9 @@ $(document).ready(function(){
 
         $("a[data-tooltip='Adicionar Ação']").on("click", function(e){
             loadPageOnWindow('Adicionar Ação', '80%', '80vh', 'd_paginas/add_acao.php?id=<?php echo $id ?>');
+        });
+        $("a[data-tooltip='Prorrogar']").on("click", function(e){
+            loadPageOnWindow('Prorrogar Manifestação', '80%', '50vh', 'd_paginas/prorrogar_manifestacao.php?id=<?php echo $id ?>');
         });
 });
 </script>

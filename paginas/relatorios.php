@@ -31,8 +31,8 @@
     <?php
         if(isset($_GET['tipo']))
         {
-            // echo("<a id='printReport' class=\"btn-floating btn-small waves-effect blue-grey lighten-3 tooltipped z-depth-0\" data-position=\"bottom\" data-tooltip=\"Gerar relatório em PDF\"><i class=\"material-icons\">print</i></a>
-            // ");
+            echo("<a onclick=\"window.open('imprimir_relatorio.php');\" class=\"btn-floating btn-small waves-effect blue-grey lighten-3 tooltipped z-depth-0\" data-position=\"bottom\" data-tooltip=\"Gerar relatório em PDF\"><i class=\"material-icons\">print</i></a>
+            ");
         } 
     ?>
     </div>

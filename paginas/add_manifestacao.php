@@ -69,6 +69,7 @@
                         <option value="Campus Janaúba">Campus Janaúba</option>
                         <option value="Campus Unaí">Campus Unaí</option>
                         <option value="Campus Mucuri">Campus Mucuri</option>
+                        <option value="Desconhecido">Desconhecido</option>
                     </select>
                     <label>Campus</label>
             </div>
@@ -132,7 +133,7 @@
     $('#datalimite').inputmask("99/99/9999");
 
     $("#formManifestacao").on("click", "a", function(){
-        postForm("scripts/add_manifestacao.php", "formManifestacao");
+        postForm("scripts/add_manifestacao.php", "formManifestacao", "?page=dashboard");
     });
 
   });

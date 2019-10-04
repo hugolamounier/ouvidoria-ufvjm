@@ -68,6 +68,21 @@ require("config/config.php");
                 </div>
             </div>
         </div>
+        <div class="divisor"></div>
+        <div class='row'>
+            <div class='col s6'>
+                <div class='box'>
+                    <p class='title'><span class='blue-grey-text text-darken-3'>Proveniência</span></p>
+                    <div id="chartProveniencia"></div>
+                </div>
+            </div>
+            <div class='col s6 left_border'>
+                <div class='box'>
+                    <p class='title'><span class='blue-grey-text text-darken-3'>Origem das Manifestações</span></p>
+                    <div id="chartOrigem"></div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -76,5 +91,7 @@ require("config/config.php");
 $(document).ready(function(){
     grafico(<?php echo json_encode(Graficos::consultarManifestacao($db_conn), JSON_NUMERIC_CHECK) ?>, ["#e53935","#f57c00","#43a047","#ffee58","#ff4081"], 'chartManifestacoes', '', '', 'doughnut', 14);
     grafico(<?php echo json_encode(Graficos::consultarSituacao($db_conn), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#F39C12","#E67E22","#884EA0","#7FB3D5","#76D7C4","#D5F5E3","#7D6608","#7E5109","#DC7633"], 'chartSituacao', '', '', 'doughnut', 14);
+    grafico(<?php echo json_encode(Graficos::consultarNup($db_conn), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#3FFF00"], 'chartOrigem', '', '', 'doughnut', 14);
+    grafico(<?php echo json_encode(Graficos::consultarProveniencia($db_conn), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#3FFF00"], 'chartProveniencia', '', '', 'doughnut', 14);
 });
 </script>

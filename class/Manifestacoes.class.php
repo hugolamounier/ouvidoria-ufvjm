@@ -281,8 +281,6 @@ class Manifestacoes{
 
     public static function listarManifestacoes($tipoManifestacao, $sort, $db_conn)
     {
-
-        
         if($sort == '' or null)
         {
             if($tipoManifestacao == '' or null)
@@ -458,21 +456,84 @@ class Manifestacoes{
         }
     }
 
+    public static function atualizarSituacao($idManifestacao, $idSituacao, $db_conn)
+    {
+        if(self::existeManifestacao($idManifestacao, $db_conn))
+        {
+            if($idSituacao == '' or null)
+            {
+                return false;
+            }
+
+            $sql = $db_conn->prepare("update manifestacao set situacao=? where idManifestacao=?");
+            $sql->bind_param("ii", $idSituacao, $idManifestacao);
+            $sql->execute();
+
+            if($sql)
+            {
+                return true;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public static function prorrogarManifestacao($idManifestacao, $justificativa, $usuario, $db_conn)
+    {
+        if(self::existeManifestacao($idManifestacao, $db_conn))
+        {
+           if(!Pendencias::existeProrrogacao($idManifestacao, $db_conn))
+           {
+                $sql = $db_conn->prepare("update manifestacao set dataLimite = DATE_ADD(dataLimite, INTERVAL 30 DAY) where idManifestacao=?");
+                $sql->bind_param('i', $idManifestacao);
+                $sql->execute();
+
+                if($sql)
+                {
+                    if(Pendencias::addPendencia($idManifestacao, 9, $justificativa, date("Y-m-d"), $usuario, '', $db_conn))
+                    {
+                        if(self::atualizarSituacao($idManifestacao, 5, $db_conn))
+                        {
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }else{
+                        return false;
+                    }
+                }else{
+                    $sql3 = $db_conn->prepare("update manifestacao set dataLimite = DATE_SUB(dataLimite, INTERVAL 30 DAY) where idManifestacao=?");
+                    $sql3->bind_param('i', $idManifestacao);
+                    $sql3->execute();
+                    return false;
+                }
+           }else{
+               return false;
+           }
+
+        }else{
+            return false;
+        }
+    }
+
     public static function editarManifestacao($id, $db_conn){
-        $sql = $db_conn->prepare("SELECT * FROM manifestacao WHERE idManifestacao = ?");
-        $sql->bind_param("i" , $id);
-        $sql->execute();
-        $sql = $sql->get_result();
-    
-    
-        if ($sql->num_rows > 0) {
+        if (self::existeManifestacao($id, $db_conn)) {
 
                     $nup = $_POST["nup"];
                     $tipoManifestacao = $_POST["tipoManifestacao"];
                     $dataRecebimento = Helper::converterDataToMysqlData($_POST["dataRecebimento"]);
                     $assunto = $_POST["assunto"];
                     $situacao = $_POST["situacao"];
-                    $dataLimite = Helper::converterDataToMysqlData($_POST["dataLimite"]);
+                    $dataLimite = $_POST["dataLimite"];
+                    if($dataLimite == '' || $dataLimite == '00/00/0000')
+                    {
+                        $dataLimite = null;
+                    }else{
+                        $dataLimite = Helper::converterDataToMysqlData($dataLimite);
+                    }
                     $nomeDemandante = $_POST["nomeDemandante"];
                     $unidadeEnvolvida = $_POST["unidadeEnvolvida"];
                     $emailDemandante = $_POST["emailDemandante"];

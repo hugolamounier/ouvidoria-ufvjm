@@ -41,7 +41,7 @@
                         exit;
                         }
                         
-                    if(move_uploaded_file($_FILES['anexo']['tmp_name'], '../anexos/'.$anexoFileName))
+                    if(move_uploaded_file($_FILES['anexo']['tmp_name'], '/var/www/html/anexos/'.$anexoFileName))
                     {
                         $filePath = 'anexos/'.$anexoFileName;
                     }else{
@@ -74,7 +74,7 @@
                         exit;
                         }
                         
-                    if(move_uploaded_file($_FILES['anexo']['tmp_name'], '../anexos/'.$anexoFileName))
+                    if(move_uploaded_file($_FILES['anexo']['tmp_name'], '/var/www/html/anexos/'.$anexoFileName))
                     {
                         $filePath = 'anexos/'.$anexoFileName;
                     }else{

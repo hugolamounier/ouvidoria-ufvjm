@@ -31,7 +31,7 @@ function loadScript(url, container)
         }
     });
 }
-function postForm(url, formId)
+function postForm(url, formId, page)
 {
     showLoading();
     $.ajax({
@@ -43,7 +43,7 @@ function postForm(url, formId)
             if(data == "ok")
             {
                 closeLoading();
-                $(location).attr('href', '?page=dashboard');
+                $(location).attr('href', page);
             }else{
                 alert(data);
                 closeLoading();

@@ -18,7 +18,7 @@ class Helper{
     }
     public static function converterMysqlDataToData($mysqlDate)
     {
-        if($mysqlDate == "0000-00-00"){
+        if($mysqlDate == NULL){
             return "---";
         }else{
             return substr($mysqlDate, 8, 2)."/".substr($mysqlDate, 5, 2)."/".substr($mysqlDate, 0, 4);

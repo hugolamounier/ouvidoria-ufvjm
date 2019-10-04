@@ -48,6 +48,10 @@ $erros = array(); //Array com todos os erros
 		}elseif (empty($topicoManifestacao)){
 			die("Existem campos que não podem ser vazios (Assunto)");
 		}else{
+			if($dataLimite == '--')
+			{
+				$dataLimite = NULL;
+			}
 			if (Manifestacoes::novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $db_conn)) {
 				echo "ok";
 			}else{

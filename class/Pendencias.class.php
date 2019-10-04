@@ -71,16 +71,77 @@ class Pendencias{
         }
     }
 
-    public static function deletarPendencia($idPendencia, $db_conn)
+    public static function existePendenciaId($idPendencia, $db_conn)
     {
-        if(self::getParteEnvolvida($idPendencia, $db_conn))
+        $sql = $db_conn->prepare("select * from pendencias where id=?");
+        $sql->bind_param('i', $idPendencia);
+        $sql->execute();
+
+        $sql = $sql->get_result();
+
+        if($sql->num_rows > 0)
         {
-            $sql = $db_conn->prepare("delete from partes_envolvidas where idPendencia=?");
-            $sql->bind_param("i", $idPendencia);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function getTipoPendencia($idPendencia, $db_conn)
+    {
+        if(self::existePendenciaId($idPendencia, $db_conn))
+        {
+            $sql = $db_conn->prepare("select tipoPendencia from pendencias where id=?");
+            $sql->bind_param('i', $idPendencia);
             $sql->execute();
 
-            if($sql)
+            $sql = $sql->get_result();
+
+            if($sql->num_rows > 0)
             {
+                $row = $sql->fetch_assoc();
+
+                return $row["tipoPendencia"];
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public static function deletarPendencia($idPendencia, $db_conn)
+    {
+        if(self::existePendenciaId($idPendencia, $db_conn))
+        {
+            if(self::getTipoPendencia($idPendencia, $db_conn) == 9)
+            {
+                return false;
+            }
+            if(self::getParteEnvolvida($idPendencia, $db_conn))
+            {
+                $sql = $db_conn->prepare("delete from partes_envolvidas where idPendencia=?");
+                $sql->bind_param("i", $idPendencia);
+                $sql->execute();
+
+                if($sql)
+                {
+                    $sql2 = $db_conn->prepare("delete from pendencias where id=?");
+                    $sql2->bind_param("i", $idPendencia);
+                    $sql2->execute();
+
+                    if($sql2)
+                    {
+                        return true;
+                    }else{
+                        return false;
+                    }
+
+                }else{
+                    return false;
+                }
+            }else{
                 $sql2 = $db_conn->prepare("delete from pendencias where id=?");
                 $sql2->bind_param("i", $idPendencia);
                 $sql2->execute();
@@ -91,10 +152,9 @@ class Pendencias{
                 }else{
                     return false;
                 }
-
-            }else{
-                return false;
             }
+        }else{
+            return false;
         }
     }
 
@@ -107,6 +167,22 @@ class Pendencias{
         if($sql->num_rows > 0)
         {
             return $sql;
+        }else{
+            return false;
+        }
+    }
+
+    public static function existeProrrogacao($idManifestacao, $db_conn)
+    {
+        $sql = $db_conn->prepare("select * from pendencias where idManifestacao=? and tipoPendencia='9'");
+        $sql->bind_param('i', $idManifestacao);
+        $sql->execute();
+
+        $sql = $sql->get_result();
+
+        if($sql->num_rows > 0)
+        {
+            return true;
         }else{
             return false;
         }
@@ -139,6 +215,9 @@ class Pendencias{
             break;
             case 8:
                 return "Posicionamento Final";
+            break;
+            case 9:
+                return "Requerimento Prorrogado";
             break;
 
         }
