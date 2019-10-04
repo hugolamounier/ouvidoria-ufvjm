@@ -50,7 +50,7 @@ $erros = array(); //Array com todos os erros
 		}else{
 			if($dataLimite == '--')
 			{
-				$dataLimite = NULL;
+				$dataLimite = null;
 			}
 			if (Manifestacoes::novaManifestacao($nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $usuario, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $db_conn)) {
 				echo "ok";
