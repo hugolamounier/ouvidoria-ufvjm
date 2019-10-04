@@ -135,6 +135,29 @@ function deletarManifestacao(id)
         });
     }
 }
+function deleterAcao(id)
+{
+    var conf = "Tem certeza que deseja excluir esta ação?";
+    showLoading();
+    if(confirm(conf))
+    {
+        $.ajax({
+            url: 'scripts/deletar_acao.php?id='+id,
+            type: 'POST',
+            success: function(data)
+            {
+                if(data == 'ok')
+                {
+                    alert("Ação deletada com sucesso.");
+                    window.location.reload();
+                }else{
+                    alert("Erro ao deletar a ação.\nAções de prorrogação de prazo não podem ser deletadas.");
+                    closeLoading();
+                }
+            }
+        });
+    }
+}
 function showLoading()
 {
     $('#loadingCnt').fadeIn(300);

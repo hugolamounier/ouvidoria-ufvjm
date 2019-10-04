@@ -33,6 +33,13 @@
                 $dataEncaminhamento = $_POST['dataEncaminhamento'];
                 $dataLimitePosicionamento = $_POST['dataLimitePosicionamento'];
 
+                if(empty($dataLimitePosicionamento))
+                {
+                    $dataLimitePosicionamento = null;
+                }else{
+                    $dataLimitePosicionamento = Helper::converterDataToMysqlData($dataLimitePosicionamento);
+                }
+
                 $anexoFileName = $idManifestacao.".$totalAcao - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
                 if(!empty($path))
                 {
@@ -55,7 +62,7 @@
                 {
                     $lastId = Pendencias::getLastIdPendencia($db_conn);
                     if(Pendencias::addParteEnvolvida($idManifestacao, $lastId, $encaminhamentoPara, Helper::converterDataToMysqlData($dataEncaminhamento),
-                    Helper::converterDataToMysqlData($dataLimitePosicionamento), $_SESSION["logged_user"], $db_conn))
+                    $dataLimitePosicionamento, $_SESSION["logged_user"], $db_conn))
                     {
                         die("ok");
                     }else{

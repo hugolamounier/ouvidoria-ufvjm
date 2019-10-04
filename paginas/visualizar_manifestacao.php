@@ -137,7 +137,7 @@
                             }
                         echo("</div>");
                         echo("<div class='right z-depth-2'>");
-                            echo("<a onclick=\"\" class=\"tooltipped\" data-position=\"bottom\" data-tooltip=\"Deletar Ação\"><i class=\"material-icons\">delete</i></a>");
+                            echo("<a onclick=\"deleterAcao('".$row['id']."');\" class=\"tooltipped\" data-position=\"bottom\" data-tooltip=\"Deletar Ação\"><i class=\"material-icons\">delete</i></a>");
                         echo("</div>");
                     echo("</div>");
                 }
@@ -158,5 +158,6 @@ $(document).ready(function(){
         $("a[data-tooltip='Prorrogar']").on("click", function(e){
             loadPageOnWindow('Prorrogar Manifestação', '80%', '50vh', 'd_paginas/prorrogar_manifestacao.php?id=<?php echo $id ?>');
         });
+        
 });
 </script>

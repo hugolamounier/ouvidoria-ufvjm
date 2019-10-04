@@ -35,7 +35,7 @@ class Pendencias{
     {
         if(Manifestacoes::existeManifestacao($idManifestacao, $db_conn))
         {
-            if(empty($idManifestacao) || empty($idPendencia) || empty($encaminhadoPara) || empty($dataEncaminhamento) || empty($dataLimitePosicionamento) || empty($usuario))
+            if(empty($idManifestacao) || empty($idPendencia) || empty($encaminhadoPara) || empty($dataEncaminhamento) || empty($usuario))
             {
                return false;
             }
