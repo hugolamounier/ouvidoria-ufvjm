@@ -75,23 +75,23 @@ ul.dropdown-content.select-dropdown li span { color: #424242; }
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes{width: 96%; height: 50px; margin: 0 auto 30px auto; cursor: pointer;
      background: #eeeeee;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 0 0 0 2px; position: relative;}
 
-.wrapper .cnt .denunciaTag{ border-left: 6px solid #e53935;}
-.wrapper .cnt .reclamacaoTag{ border-left: 6px solid #f57c00;}
-.wrapper .cnt .solicitacaoTag{ border-left: 6px solid #43a047;}
-.wrapper .cnt .sugestaoTag{ border-left: 6px solid #ffee58 ;}
-.wrapper .cnt .elogioTag{ border-left: 6px solid #ff4081;}
+.wrapper .cnt .denunciaTag{ border-left: 7px solid #e53935;}
+.wrapper .cnt .reclamacaoTag{ border-left: 7px solid #f57c00;}
+.wrapper .cnt .solicitacaoTag{ border-left: 7px solid #43a047;}
+.wrapper .cnt .sugestaoTag{ border-left: 7px solid #ffee58 ;}
+.wrapper .cnt .elogioTag{ border-left: 7px solid #ff4081;}
 
-.wrapper .cnt .denunciaTagRight{ border-right: 6px solid #e53935;}
-.wrapper .cnt .reclamacaoTagRight{ border-right: 6px solid #f57c00;}
-.wrapper .cnt .solicitacaoTagRight{ border-right: 6px solid #43a047;}
-.wrapper .cnt .sugestaoTagRight{ border-right: 6px solid #ffee58 ;}
-.wrapper .cnt .elogioTagRight{ border-right: 6px solid #ff4081;}
+.wrapper .cnt .denunciaTagRight{ border-right: 7px solid #e53935;}
+.wrapper .cnt .reclamacaoTagRight{ border-right: 7px solid #f57c00;}
+.wrapper .cnt .solicitacaoTagRight{ border-right: 7px solid #43a047;}
+.wrapper .cnt .sugestaoTagRight{ border-right: 7px solid #ffee58 ;}
+.wrapper .cnt .elogioTagRight{ border-right: 7px solid #ff4081;}
 
-.wrapper .cnt .denunciaTagTop{ border-top: 6px solid #e53935;}
-.wrapper .cnt .reclamacaoTagTop{ border-top: 6px solid #f57c00;}
-.wrapper .cnt .solicitacaoTagTop{ border-top: 6px solid #43a047;}
-.wrapper .cnt .sugestaoTagTop{ border-top: 6px solid #ffee58 ;}
-.wrapper .cnt .elogioTagTop{ border-top: 6px solid #ff4081;}
+.wrapper .cnt .denunciaTagTop{ border-top: 7px solid #e53935;}
+.wrapper .cnt .reclamacaoTagTop{ border-top: 7px solid #f57c00;}
+.wrapper .cnt .solicitacaoTagTop{ border-top: 7px solid #43a047;}
+.wrapper .cnt .sugestaoTagTop{ border-top: 7px solid #ffee58 ;}
+.wrapper .cnt .elogioTagTop{ border-top: 7px solid #ff4081;}
 
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row {margin: 0; padding: 0;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes .row .col{padding: 0;}
