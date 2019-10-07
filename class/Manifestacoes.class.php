@@ -445,9 +445,12 @@ class Manifestacoes{
         if ($sql->num_rows >0) {
             return $sql;
         }else{ //Caso não ache pelo nup
-            $sql_1 = $db_conn->prepare("SELECT * FROM manifestacao WHERE  assunto LIKE ? OR nomeDemandante LIKE ?
-                    OR unidadeEnvolvida LIKE ? OR emailDemandante LIKE ? OR usuario LIKE ? OR infoExtra LIKE ? OR proveniencia LIKE ?");
-            $sql_1->bind_param("sssssss" , $p,$p,$p,$p,$p,$p,$p);
+            $sql_1 = $db_conn->prepare("(SELECT * FROM manifestacao WHERE  assunto LIKE ? OR nomeDemandante LIKE ?
+                    OR unidadeEnvolvida LIKE ? OR emailDemandante LIKE ? OR usuario LIKE ? OR infoExtra LIKE ? OR proveniencia LIKE ?)
+                    UNION
+                    (SELECT m.* FROM manifestacao m, pendencias p WHERE p.descricaoPendencia LIKE ?)
+                    ");
+            $sql_1->bind_param("ssssssss" , $p,$p,$p,$p,$p,$p,$p, $p);
             $sql_1->execute();
             $sql_1 = $sql_1->get_result();
 
@@ -458,6 +461,20 @@ class Manifestacoes{
             }
 
         }
+    }
+    public static function pesquisarManifestacaoDate($pesquisa, $db_conn){
+        $pesquisa = str_replace('/', '-', $pesquisa);
+        $pesquisa = date("Y-m-d", strtotime($pesquisa));
+        $sql_1 = $db_conn->prepare("SELECT * FROM manifestacao WHERE dataRecebimento=?");
+            $sql_1->bind_param("s", $pesquisa);
+            $sql_1->execute();
+            $sql_1 = $sql_1->get_result();
+
+            if ($sql_1->num_rows >0) {
+               return $sql_1;
+            }else{
+                return false;
+            }
     }
 
     public static function atualizarSituacao($idManifestacao, $idSituacao, $db_conn)

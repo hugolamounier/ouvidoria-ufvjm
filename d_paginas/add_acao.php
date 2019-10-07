@@ -99,6 +99,7 @@
         
         $("#add_acao").submit(function(e){
             e.preventDefault();
+            showLoading();
             var formData = new FormData(this);
             var id = <?php echo $idManifestacao ?>;
             $.ajax({
@@ -114,6 +115,7 @@
                             location.reload();
                         }else{
                             alert(data);
+                            closeLoading();
                         }
                     },
                 cache: false,

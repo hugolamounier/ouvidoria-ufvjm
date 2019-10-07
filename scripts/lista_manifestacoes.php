@@ -16,7 +16,12 @@ if(isset($_GET["p"]))
         goto sempesquisa;
     }
     echo("<div class=\"group_title blue-grey-text\"><span>Resultado pesquisa: $pesquisa</span></div>");
-    $resutlado_pesquisa = Manifestacoes::pesquisarManifestacao($pesquisa, $db_conn);
+    if(isset($_GET['tipoP']) && $_GET['tipoP'] == 'date')
+    {
+        $resutlado_pesquisa = Manifestacoes::pesquisarManifestacaoDate($pesquisa, $db_conn);
+    }else{
+        $resutlado_pesquisa = Manifestacoes::pesquisarManifestacao($pesquisa, $db_conn);
+    }
     if($resutlado_pesquisa->num_rows > 0)
     {
         while($row = $resutlado_pesquisa->fetch_array())

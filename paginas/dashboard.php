@@ -7,6 +7,7 @@
                 </ul>
                 <div class="search">
                     <input id="searchManifestacao" type="text"  name="searchManifestacao" placeholder="Digite sua pesquisa">
+                    <input id="searchManifestacaoData" type="text"  name="searchManifestacao" placeholder="Pesquisar por Data">
                 </div>
             </div>
         </div>
@@ -65,6 +66,7 @@
 <script>
     $(document).ready(function(){
         $('.tooltipped').tooltip();
+        $('#searchManifestacaoData').inputmask("99/99/9999");
         $('.dropdown-trigger').dropdown({
             constrainWidth: false,
             alignment: "right",
@@ -83,15 +85,24 @@
             {
                 loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
             }
-        //         loadScript("scripts/lista_manifestacoes.php?p="+$(this).val(), "lManifestacoes");
-        //         $("#pesquisaQuery span").html("Resultado pesquisa: "+$(this).val());
-        //     }
+        });
+        $("#searchManifestacaoData").keyup(function(){
+            if($(this).val() == '')
+            {
+                loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
+            }
         });
 
-        $(document).on("keypress", function(e){
+        $("#searchManifestacao").on("keypress", function(e){
             if(e.which == 13)
             {
                 loadScript("scripts/lista_manifestacoes.php?p="+$("#searchManifestacao").val(), "lManifestacoes");
+            }
+        });
+        $("#searchManifestacaoData").on("keypress", function(e){
+            if(e.which == 13)
+            {
+                loadScript("scripts/lista_manifestacoes.php?tipoP=date&p="+$("#searchManifestacaoData").val(), "lManifestacoes");
             }
         });
 

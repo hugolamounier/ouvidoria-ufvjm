@@ -35,9 +35,12 @@ border-radius: 3px;padding: 0 10px 0 10px; display: flex; justify-content: flex-
 .wrapper .cnt .dashboard_toolbox ul > li{display: inline; margin: 0 5px 0 5px;}
 .wrapper .cnt .dashboard_toolbox ul > li a{font-weight: bold;}
 .wrapper .cnt .dashboard_toolbox .search {position: absolute; top:10px;right:5px; margin: 0 0 10px 0;}
-.wrapper .cnt .dashboard_toolbox .search input{width:300px;border: 0; margin: 0; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+.wrapper .cnt .dashboard_toolbox .search input:first-of-type{width:280px;border: 0; margin: 0; -webkit-border-radius: 10px; -moz-border-radius: 10px;
      border-radius: 10px;-moz-box-shadow:0 0 5px #888888; -webkit-box-shadow:0 0 5px #888888;
-     box-shadow:0 0 5px #888888; padding: 0 5px 0 10px;}
+     box-shadow:0 0 5px #888888; padding: 0 5px 0 10px; margin: 0 10px 0 0;}
+.wrapper .cnt .dashboard_toolbox .search input:nth-of-type(2){width:150px;border: 0; margin: 0; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+     border-radius: 10px;-moz-box-shadow:0 0 5px #888888; -webkit-box-shadow:0 0 5px #888888;
+     box-shadow:0 0 5px #888888; padding: 0 5px 0 0; text-align: center;}
 
 .wrapper .cnt .dashboard_sort{width: 95%;height: 55px; margin: 0 auto 0 auto; position: relative; display: flex; justify-content: flex-end; align-items: center;}
 .wrapper .cnt .dashboard_sort ul{min-height: 55px; display: flex; align-items: center;padding: 5px 5px 5px 5px; -webkit-border-radius: 10px; -moz-border-radius: 10px;
