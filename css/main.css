@@ -129,14 +129,16 @@ display: flex; overflow: hidden; flex-wrap: wrap}
 .wrapper .cnt .pendencias_wrapper .pendencia .header span:nth-of-type(2){padding: 0 15px 0 0;text-transform: uppercase; font-weight: bold; color: #fff;text-shadow: #424242 1px 1px 1px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .header span:nth-of-type(2) a{font-size:15px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .header span:nth-of-type(2) a>i{font-size:20px;color:#eeeeee; cursor: pointer;}
-.wrapper .cnt .pendencias_wrapper .pendencia .left{width: calc(100% - 30px); float: left;}
-.wrapper .cnt .pendencias_wrapper .pendencia .right{width: 30px; flex:1; display: flex; float: right;justify-content: center; align-items: center;}
+.wrapper .cnt .pendencias_wrapper .pendencia .left{width: calc(100% - 30px); float: left; }
+.wrapper .cnt .pendencias_wrapper .pendencia .right{width: 30px; display: flex; float: right;justify-content: center; flex-direction: column; align-content: center; align-items: center;}
 
 .wrapper .cnt .pendencias_wrapper .pendencia .left .header{width: 100%;height: 30px; display: flex; align-items: center; justify-content: space-between;}
 .wrapper .cnt .pendencias_wrapper .pendencia .left .header span:first-of-type{padding: 0 0 0 15px; text-transform: uppercase; font-weight: bold; color: #fff;text-shadow: #424242 1px 1px 1px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .left .header span:nth-of-type(2){padding: 0 15px 0 0;text-transform: uppercase; font-weight: bold; color: #fff;text-shadow: #424242 1px 1px 1px;}
-.wrapper .cnt .pendencias_wrapper .pendencia .right a{font-size:15px;}
+.wrapper .cnt .pendencias_wrapper .pendencia .right a{font-size:15px}
 .wrapper .cnt .pendencias_wrapper .pendencia .right a>i{font-size:25px;color:#bdbdbd ; cursor: pointer;}
+.wrapper .cnt .pendencias_wrapper .pendencia .right a:first-of-type{border-bottom: 1px dashed #e0e0e0; margin: 3px 0 3px 0;}
+.wrapper .cnt .pendencias_wrapper .pendencia .right a:nth-of-type(2)>i{font-size: 22px;}
 
 .wrapper .cnt .pendencias_wrapper .pendencia .info_body{width: 97%; margin: 10px auto 10px auto; font-size: 12px;}
 .wrapper .cnt .pendencias_wrapper .pendencia .footer{width: 100%; height: 30px; display: flex; align-items: center;}

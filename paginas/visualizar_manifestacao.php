@@ -2,7 +2,11 @@
     if(isset($_GET["id"]))
     {
         $id = $_GET["id"];
-        $Manifestacao = new Manifestacoes($id, $db_conn);
+        try{
+            $Manifestacao = new Manifestacoes($id, $db_conn);
+        }catch(Exception $e){
+            die("Id da manifestação inexistente.");
+        }
     }else{
         die("Id da manifestação não definido.");
     }
@@ -138,6 +142,7 @@
                         echo("</div>");
                         echo("<div class='right z-depth-2'>");
                             echo("<a onclick=\"deleterAcao('".$row['id']."');\" class=\"tooltipped\" data-position=\"bottom\" data-tooltip=\"Deletar Ação\"><i class=\"material-icons\">delete</i></a>");
+                            echo("<a id-edit=\"".$row['id']."\" class=\"tooltipped editAcao\" data-position=\"bottom\" data-tooltip=\"Editar Ação\"><i class=\"material-icons\">edit</i></a>");
                         echo("</div>");
                     echo("</div>");
                 }
@@ -154,6 +159,9 @@ $(document).ready(function(){
 
         $("a[data-tooltip='Adicionar Ação']").on("click", function(e){
             loadPageOnWindow('Adicionar Ação', '80%', '80vh', 'd_paginas/add_acao.php?id=<?php echo $id ?>');
+        });
+        $(".editAcao").on("click", function(e){
+            loadPageOnWindow('Editar Ação', '80%', '85vh', 'd_paginas/editar_acao.php?id='+$(this).attr('id-edit'));
         });
         $("a[data-tooltip='Prorrogar']").on("click", function(e){
             loadPageOnWindow('Prorrogar Manifestação', '80%', '50vh', 'd_paginas/prorrogar_manifestacao.php?id=<?php echo $id ?>');

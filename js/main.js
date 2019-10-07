@@ -133,6 +133,8 @@ function deletarManifestacao(id)
                 }
             }
         });
+    }else{
+        closeLoading();
     }
 }
 function deleterAcao(id)
@@ -156,6 +158,8 @@ function deleterAcao(id)
                 }
             }
         });
+    }else{
+        closeLoading();
     }
 }
 function showLoading()

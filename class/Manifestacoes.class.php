@@ -20,6 +20,10 @@ class Manifestacoes{
 
     public function __construct($idManifestacao, $db_conn)
     {
+        if(!self::existeManifestacao($idManifestacao, $db_conn))
+        {
+            throw new Exception("Id da manifestação inexistente.");
+        }
         $this->idManifestacao=$idManifestacao;
         $sql = $db_conn->prepare("select * from manifestacao where idManifestacao = ?");
         $sql->bind_param("i", $this->idManifestacao);
