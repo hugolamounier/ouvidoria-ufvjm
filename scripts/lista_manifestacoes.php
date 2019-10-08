@@ -28,7 +28,7 @@ if(isset($_GET["p"]))
         {
             if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -61,7 +61,7 @@ if(isset($_GET["p"]))
         {
             if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -86,7 +86,7 @@ if(isset($_GET["p"]))
             {
                 if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -109,7 +109,7 @@ if(isset($_GET["p"]))
             {
                 if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -132,7 +132,7 @@ if(isset($_GET["p"]))
             {
                 if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -155,7 +155,7 @@ if(isset($_GET["p"]))
             {
                 if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = mb_substr($row['assunto'],0,38, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -178,7 +178,7 @@ if(isset($_GET["p"]))
             {
                 if(strlen($row["assunto"]) > 38)
                 {
-                    $titulo = substr($row['assunto'], 0, 38)."...";
+                    $titulo = substr($row['assunto'], 0, 35)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }

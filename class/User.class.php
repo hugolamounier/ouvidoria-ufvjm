@@ -1,66 +1,170 @@
 <?php 
     class User{
         
-        protected $user="";
+        protected $login="";
         protected $password="";
+        protected $email = "";
+        protected $nome = "";
+        protected $autoridade = "";
         protected $db_conn="";
 
-        public function __construct($user, $password, $db_conn)
+        public function __construct($login, $db_conn)
         {
-            $this->user = $user;
-            $this->password = $password;
+            $this->login = $login;
             $this->db_conn = $db_conn;
+            $sql = $db_conn->prepare("select * from usuario where login=? limit 1");
+            $sql->bind_param('s', $login);
+            $sql->execute();
+            $sql = $sql->get_result();
+            if($sql->num_rows > 0)
+            {
+                $row = $sql->fetch_assoc();
+                $this->password = $row["senha"];
+                $this->email = $row["email"];
+                $this->nome = $row["nome"];
+                $this->autoridade = $row["autoridade"];
+            }else{
+                $this->password="";
+                $this->email="";
+                $this->autoridade="";
+                $this->nome="";
+            }
+            
         }
 
-        public static function addUser($login, $senha, $email, $autoridade, $db_conn)
+        public function addUser()
         {
-            if(empty($login) || empty($senha) || empty($autoridade) || empty($email))
+            if(empty($login) || empty($senha) || empty($nome) || empty($autoridade) || empty($email))
             {
                 return false;
             }
-
-            $sql = $db_conn->prepare("select * from usuario where login=? or email=?");
-            $sql->bind_param("ss", $login, $email);
-            $sql->execute();
-            $sql = $sql->get_result();
-
-            if($sql->num_rows > 0)
+            if(!self::existeUsuario($this->login, $this->db_conn))
             {
-                return false;
-            }else{
-                $sql2 = $db_conn->prepare("insert into usuario(login, senha, email, autoridade) values (?,?,?,?)");
-                $sql2->bind_param('sssi', $login, $senha, $email, $autoridade);
-                $sql2->execute();
-
-                if($sql2)
+                $sql = $this->db_conn->prepare("insert into usuario(login, senha, nome, email, autoridade) values (?,?,?,?,?)");
+                $sql->bind_param("ssssi", $login, $senha, $nome, $email, $autoridade);
+                $sql->execute();
+                if($sql)
                 {
                     return true;
                 }else{
-                    error_log("Erro ao inserir usuário no banco de dados.", 0);
+                    throw new Exception("Não foi possível adicionar o usuário, tente novamente.");
                     return false;
                 }
+            }else{
+                throw new Exception("Usuário já existente.");
+                return false;
             }
         }
-        public function getUserAutoridade()
+        public static function existeUsuario($login, $db_conn)
         {
-            $sql = $this->db_conn->prepare("select * from usuario where login=?");
-            $sql->bind_param("s", $this->user);
+            $sql = $db_conn->prepare("select * from usuario where login=?");
+            $sql->bind_param('s', $login);
             $sql->execute();
 
             $sql = $sql->get_result();
-            $row = $sql->fetch_array();
-
-            return $row["autoridade"];
-        } 
-
-        public function checkAutoridade($auth_level)
-        {
-            if(getUserAutoridade() >= $auth_level)
+            if($sql->num_rows > 0)
             {
                 return true;
             }else{
                 return false;
             }
+        }
+        public function checkAutoridade($auth_level)
+        {
+            if($this->getAutoridade() >= $auth_level)
+            {
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        /**
+         * Get the value of login
+         */ 
+        public function getLogin()
+        {
+                return $this->login;
+        }
+
+        /**
+         * Get the value of password
+         */ 
+        public function getPassword()
+        {
+                return $this->password;
+        }
+
+        /**
+         * Set the value of password
+         *
+         * @return  self
+         */ 
+        public function setPassword($password)
+        {
+                $this->password = $password;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of email
+         */ 
+        public function getEmail()
+        {
+                return $this->email;
+        }
+
+        /**
+         * Set the value of email
+         *
+         * @return  self
+         */ 
+        public function setEmail($email)
+        {
+                $this->email = $email;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of nome
+         */ 
+        public function getNome()
+        {
+                return $this->nome;
+        }
+
+        /**
+         * Set the value of nome
+         *
+         * @return  self
+         */ 
+        public function setNome($nome)
+        {
+                $this->nome = $nome;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of autoridade
+         */ 
+        public function getAutoridade()
+        {
+                return $this->autoridade;
+        }
+
+        /**
+         * Set the value of autoridade
+         *
+         * @return  self
+         */ 
+        public function setAutoridade($autoridade)
+        {
+                $this->autoridade = $autoridade;
+
+                return $this;
         }
     }
 ?>

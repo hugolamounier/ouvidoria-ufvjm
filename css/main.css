@@ -13,7 +13,7 @@ body{margin: 0; padding: 0; font-family: 'Open Sans', sans-serif;}
 
 .division{width: 91%;height: 1px; border-top:1px solid #bbdefb; margin: 10px auto 10px auto;}
 
-/* Dashboard */
+/* Menu */
 .wrapper .menu_wrapper{width:230px;height: 100vh; float: left; position: relative;}
 .wrapper .menu_wrapper .menu{width: 100%;}
 .wrapper .menu_wrapper .menu ul{width: 100%;}
@@ -23,12 +23,22 @@ body{margin: 0; padding: 0; font-family: 'Open Sans', sans-serif;}
 
 .wrapper .menu_wrapper .menu_footer{width: 100%; display: flex; position: absolute; bottom: 0;
       align-items: center;  flex-wrap: wrap; justify-items: center; justify-content: center;}
+.wrapper .menu_wrapper .menu_footer .userInfo{width:100%; min-height: 30px; display: flex; align-items: center; align-content: center;}
+.wrapper .menu_wrapper .menu_footer .userInfo div{width: 100%; padding: 0 10px 0 10px;} 
+.wrapper .menu_wrapper .menu_footer .userInfo ul{width: 100%;}
+.wrapper .menu_wrapper .menu_footer .userInfo ul li{width:100%; height: 40px; cursor: pointer;margin: 0 0 5px 0;padding: 0 0 0 10px;}
+.wrapper .menu_wrapper .menu_footer .userInfo ul li span{font-weight: bold;color: #616161 ;}
+.wrapper .menu_wrapper .menu_footer .userInfo ul li:hover{background: #fff8e1;}
 .wrapper .menu_wrapper .menu_footer .logo_ufvjm{width: 150px; height: 30px; background: url("../imagem/logo/logo_ufvjm.png") no-repeat;
      margin: 0 0 0 0;background-size: 150px; margin: 5px 0 15px 0;}
+
+
 
 .wrapper .cnt{  width: calc(100% - 230px); height: 100vh; max-height: 100vh; overflow-y: auto; overflow-x: hidden; float: right;
                 padding: 10px 10px 10px 10px; position: relative;}
 .container{width: 95%;}
+
+/* Dashboard */
 .wrapper .cnt .dashboard_toolbox{width: 100%;margin: 20px 0 0 0; position:relative; -webkit-border-radius: 3px; -moz-border-radius: 3px;
 border-radius: 3px;padding: 0 10px 0 10px; display: flex; justify-content: flex-start; border-bottom:4px solid #e0e0e0 ;}
 .wrapper .cnt .dashboard_toolbox ul{list-style-type: none;}
@@ -174,7 +184,11 @@ border-radius: 10px; cursor: pointer;}
 .fullReportWrapper{width:100%; min-height: 100vh; margin: 0 auto 30px auto; padding: 10px 20px 10px 20px;}
 
 
-
+/* Gerenciar Usuários */
+.wrapper .cnt .addUser{height: 40px; display: inline-flex;margin: 0 15px 15px 0;}
+.wrapper .cnt .addUser>a{font-weight: bold;}
+.wrapper .cnt .gerenciar_usuarios{width: 100%; min-height: 100px;}
+.wrapper .cnt .gerenciar_usuarios .user{width: 100%; height: 50px; display: flex; background: #eeeeee;}
 
 
 .wrapper .cnt .pendencias_wrapper .division{width: 99%;height: 1px; border-top:1px solid #eeeeee; margin: 10px auto 10px auto;}
