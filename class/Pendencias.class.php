@@ -90,6 +90,33 @@ class Pendencias{
 
         if($sql)
         {
+            switch($tipoPendencia)
+            {
+                case 3:
+                    if(Manifestacoes::atualizarSituacao($idManifestacao, 4, $db_conn))
+                    {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                break;
+                case 7:
+                    if(Manifestacoes::atualizarSituacao($idManifestacao, 2, $db_conn))
+                    {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                break;
+                case 8:
+                    if(Manifestacoes::atualizarSituacao($idManifestacao, 7, $db_conn))
+                    {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                break;
+            }
             return true;
         }else{
             return false;

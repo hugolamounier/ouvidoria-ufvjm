@@ -445,12 +445,12 @@ class Manifestacoes{
         if ($sql->num_rows >0) {
             return $sql;
         }else{ //Caso não ache pelo nup
-            $sql_1 = $db_conn->prepare("(SELECT * FROM manifestacao WHERE  assunto LIKE ? OR nomeDemandante LIKE ?
+            $sql_1 = $db_conn->prepare("(SELECT * FROM manifestacao WHERE nup LIKE ? OR assunto LIKE ? OR nomeDemandante LIKE ?
                     OR unidadeEnvolvida LIKE ? OR emailDemandante LIKE ? OR usuario LIKE ? OR infoExtra LIKE ? OR proveniencia LIKE ?)
                     UNION
                     (SELECT m.* FROM manifestacao m, pendencias p WHERE p.descricaoPendencia LIKE ?)
                     ");
-            $sql_1->bind_param("ssssssss" , $p,$p,$p,$p,$p,$p,$p, $p);
+            $sql_1->bind_param("sssssssss" , $p, $p,$p,$p,$p,$p,$p,$p, $p);
             $sql_1->execute();
             $sql_1 = $sql_1->get_result();
 

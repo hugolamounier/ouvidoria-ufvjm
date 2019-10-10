@@ -7,6 +7,7 @@
         protected $nome = "";
         protected $autoridade = "";
         protected $db_conn="";
+        protected $ativo="";
 
         public function __construct($login, $db_conn)
         {
@@ -23,25 +24,27 @@
                 $this->email = $row["email"];
                 $this->nome = $row["nome"];
                 $this->autoridade = $row["autoridade"];
+                $this->ativo = $row["ativo"];
             }else{
                 $this->password="";
                 $this->email="";
                 $this->autoridade="";
                 $this->nome="";
+                $this->ativo = "";
             }
             
         }
 
         public function addUser()
         {
-            if(empty($login) || empty($senha) || empty($nome) || empty($autoridade) || empty($email))
+            if(empty($this->login) || empty($this->password) || empty($this->nome) || empty($this->autoridade) || empty($this->email))
             {
                 return false;
             }
             if(!self::existeUsuario($this->login, $this->db_conn))
             {
-                $sql = $this->db_conn->prepare("insert into usuario(login, senha, nome, email, autoridade) values (?,?,?,?,?)");
-                $sql->bind_param("ssssi", $login, $senha, $nome, $email, $autoridade);
+                $sql = $this->db_conn->prepare("insert into usuario(login, senha, nome, email, autoridade, ativo) values (?,?,?,?,?, 1)");
+                $sql->bind_param("ssssi", $this->login, $this->password, $this->nome, $this->email, $this->autoridade);
                 $sql->execute();
                 if($sql)
                 {
@@ -52,6 +55,44 @@
                 }
             }else{
                 throw new Exception("Usuário já existente.");
+                return false;
+            }
+        }
+        public function desativarUsuario()
+        {
+            if(self::existeUsuario($this->login, $this->db_conn))
+            {
+                $ativo = 0;
+                $sql = $this->db_conn->prepare("update usuario set ativo=? where login=?");
+                $sql->bind_param('is', $ativo, $this->login);
+                $sql->execute();
+                if($sql)
+                {
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                throw new Exception("Impossível desativar um usuário inexistente.");
+                return false;
+            }
+        }
+        public function ativarUsuario()
+        {
+            if(self::existeUsuario($this->login, $this->db_conn))
+            {
+                $ativo = 1;
+                $sql = $this->db_conn->prepare("update usuario set ativo=? where login=?");
+                $sql->bind_param('is', $ativo, $this->login);
+                $sql->execute();
+                if($sql)
+                {
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                throw new Exception("Impossível ativar um usuário inexistente.");
                 return false;
             }
         }
@@ -77,6 +118,28 @@
             }else{
                 return false;
             }
+        }
+
+        public static function getUserAutoridade($login, $db_conn)
+        {
+            if(self::existeUsuario($login, $db_conn))
+            {
+                $sql = $db_conn->prepare("select autoridade from usuario where login=?");
+                $sql->bind_param('s', $login);
+                $sql->execute();
+
+                $sql = $sql->get_result();
+                if($sql->num_rows > 0)
+                {
+                    $row = $sql->fetch_assoc();
+                    return $row["autoridade"];
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
         }
 
         /**
@@ -163,6 +226,26 @@
         public function setAutoridade($autoridade)
         {
                 $this->autoridade = $autoridade;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of ativo
+         */ 
+        public function getAtivo()
+        {
+                return $this->ativo;
+        }
+
+        /**
+         * Set the value of ativo
+         *
+         * @return  self
+         */ 
+        public function setAtivo($ativo)
+        {
+                $this->ativo = $ativo;
 
                 return $this;
         }

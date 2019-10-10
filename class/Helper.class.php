@@ -49,7 +49,7 @@ class Helper{
     }
     public static function login($user, $password, $db_conn)
         {
-            $sql = $db_conn->prepare("select * from usuario WHERE login = ? AND senha = ?");
+            $sql = $db_conn->prepare("select * from usuario WHERE login = ? AND senha = ? AND ativo='1'");
             $sql->bind_param("ss", $user, $password);
             $sql->execute();        
             $sql = $sql->get_result();

@@ -4,6 +4,7 @@
         $id = $_GET["id"];
         try{
             $Manifestacao = new Manifestacoes($id, $db_conn);
+            $User = new User($Manifestacao->getUsuario(), $db_conn);
         }catch(Exception $e){
             die("Id da manifestação inexistente.");
         }
@@ -22,6 +23,7 @@
 </div>
 <div class="container">
     <div class="recebida_por blue-grey lighten-3 z-depth-1"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
+    <div class='adicionadaPor blue-grey lighten-3 z-depth-1 tooltipped' data-position="bottom" data-tooltip="<?php echo $User->getLogin() ?>"><span><?php echo $User->getNome() ?></span></div>
     <div class='prorrogarBtn'><a data-tooltip="Prorrogar" class="waves-effect waves-light btn blue-grey lighten-3 hoverable"><i class="material-icons left">date_range</i>Prorrogar Manifestação</a></div>
     <div class="manifestacaoInfo z-depth-1 <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
         <div class='row'>

@@ -1,6 +1,6 @@
 <?php $User = new User($_SESSION["logged_user"], $db_conn); ?>
 <div class="menu_wrapper z-depth-3 grey lighten-5">
-        <div class="logo_mini"></div>
+        <div onclick="location.href='?page=dashboard'" class="logo_mini"></div>
         <div class="division"></div>
         <div class="menu">
             <ul>
@@ -17,7 +17,7 @@
         </div>
         <div class="menu_footer">
             <div class="userInfo">
-                <div><span><b>Usuário:</b> <?php echo $User->getNome() ?></span></div>
+                <div><span><b style='font-size:11.5px;'>Usuário:</b> <small><?php echo $User->getNome() ?></small>    </span></div>
             </div>
             <div class="division"></div>
             <div class="logo_ufvjm"></div>

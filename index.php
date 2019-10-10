@@ -35,7 +35,17 @@
     if(Helper::isLogged($db_conn))
     {
 ?>
-    <?php include("menu.php"); ?>
+    <?php
+    $User = new User($_SESSION["logged_user"], $db_conn);
+    if($User->getAtivo() == 0)
+    {
+        include("desativado.php");
+        die();
+    }else{
+        include("menu.php");
+    } 
+    
+    ?>
     <div id="indexCnt" class="cnt">
     <div id="print"></div>
     <?php

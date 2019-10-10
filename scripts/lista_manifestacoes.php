@@ -26,9 +26,9 @@ if(isset($_GET["p"]))
     {
         while($row = $resutlado_pesquisa->fetch_array())
         {
-            if(strlen($row["assunto"]) > 38)
+            if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -59,9 +59,9 @@ if(isset($_GET["p"]))
         echo("<div class=\"group_title blue-grey-text\"><span>Lista de demandas</span></div>");
         while($row = $lista->fetch_array())
         {
-            if(strlen($row["assunto"]) > 38)
+            if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -84,9 +84,9 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Denúncia</span></div>");
             while($row = $denuncia->fetch_array())
             {
-                if(strlen($row["assunto"]) > 38)
+                if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -107,9 +107,9 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Reclamação</span></div>");
             while($row = $reclamacao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 38)
+                if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -130,9 +130,9 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Solicitação</span></div>");
             while($row = $solicitacao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 38)
+                if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -153,9 +153,9 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Sugestão</span></div>");
             while($row = $sugestao->fetch_array())
             {
-                if(strlen($row["assunto"]) > 38)
+                if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = mb_substr($row['assunto'],0,35, "utf-8")."...";
+                    $titulo = mb_substr($row['assunto'],0,77, "utf-8")."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
@@ -176,9 +176,9 @@ if(isset($_GET["p"]))
             echo("<div class=\"group_title blue-grey-text\"><span>Elogio</span></div>");
             while($row = $elogio->fetch_array())
             {
-                if(strlen($row["assunto"]) > 38)
+                if(strlen($row["assunto"]) > 80)
                 {
-                    $titulo = substr($row['assunto'], 0, 35)."...";
+                    $titulo = substr($row['assunto'], 0, 77)."...";
                 }else{
                     $titulo = $row["assunto"];
                 }
