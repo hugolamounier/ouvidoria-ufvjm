@@ -83,8 +83,8 @@ ul.dropdown-content.select-dropdown li span { color: #424242; }
 
 
 .wrapper .cnt .manifestacoes_wrapper{width: 100%; min-height: 100px;}
-.wrapper .cnt .manifestacoes_wrapper .group_title{width: 100%; margin: 0 0 10px 0;}
-.wrapper .cnt .manifestacoes_wrapper .group_title>span{font-size: 18px; font-weight: bold;}
+.wrapper .cnt .group_title{width: 100%; margin: 0 0 10px 0;}
+.wrapper .cnt .group_title>span{font-size: 18px; font-weight: bold;}
 .wrapper .cnt .manifestacoes_wrapper .manifestacoes{width: 96%; height: 55px; margin: 0 auto 30px auto; cursor: pointer;
      background: #eeeeee;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 0 0 0 2px; position: relative;}
 

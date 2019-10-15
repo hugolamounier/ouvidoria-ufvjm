@@ -30,15 +30,6 @@
                     </ul>
                 </ul>
 
-                <!-- <ul id='groupdrop' class='dropdown-content'>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');">Todos os tipos</a></li>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=1', 'lManifestacoes');">Denúncia</a></li>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=2', 'lManifestacoes');">Reclamação</a></li>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=3', 'lManifestacoes');">Solicitação</a></li>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=4', 'lManifestacoes');">Sugestão</a></li>
-                    <li><a onclick="loadScript('scripts/lista_manifestacoes.php?tipo=5', 'lManifestacoes');">Elogio</a></li>
-                </ul> -->
-                <!--- dropdown end -->
                 <div class='legenda z-depth-1'>
                     <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');location.href='#tipo=0'"><div class="grey lighten-1"></div><span>Todas</span></div>
                     <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php?tipo=1', 'lManifestacoes');location.href='#tipo=1'"><div class="red darken-1"></div><span>Denúncia</span></div>
@@ -55,6 +46,7 @@
     <section id="listaManifestacoes">
         <div class="row">
             <div class="col s12 m12 l12 xl12">
+                <div class="group_title blue-grey-text"><span>Lista de demandas</span></div>
                 <div class="manifestacoes_wrapper" id="lManifestacoes">
                     <!-- Lista de manifestações -->
                     <!-- Fim -->
@@ -71,12 +63,16 @@
             constrainWidth: false,
             alignment: "right",
         });
+        var totalCount = 0;
+        var pIni = 0;
+        var numItens = 15;
+        var pFim = numItens;
 
         if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)
         {
-            loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
+            loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim, "lManifestacoes");
         }else{
-            loadScript("scripts/lista_manifestacoes.php?tipo="+getUrlHash('tipo'), "lManifestacoes");
+            loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim+"&tipo="+getUrlHash('tipo'), "lManifestacoes");
         }
 
 
@@ -142,6 +138,27 @@
             }
             loadScript('scripts/lista_manifestacoes.php?sort=datarecebimentoDesc&tipo='+tipo, 'lManifestacoes');
         });
-
+    jQuery(function($) {
+        $('div').on('scroll', function() {
+            if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                getMoreData();
+                }
+            })
+    });
+    function getMoreData()
+    {  
+        pIni = pFim;
+        pFim = pFim + numItens;
+        $.ajax({
+            url: "scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim,
+            type: 'GET',
+            beforeSend: function(){ showLoading(); },
+            success: function(data)
+            {
+                $("#lManifestacoes").append(data);
+                closeLoading();
+            }
+        });
+    }
   });
 </script>

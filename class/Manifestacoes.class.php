@@ -396,20 +396,29 @@ class Manifestacoes{
         }
     }
 
-    public static function listarManifestacoes($tipoManifestacao, $sort, $db_conn)
+    public static function listarManifestacoes($tipoManifestacao, $sort, $limit_i, $limit_e, $db_conn)
     {
+        if($limit_e == '' || $limit_i == '')
+        {
+            $limit_i = '';
+            $limite_e = '';
+            $limit = "";
+        }else{
+            $limit = "limit $limit_i, $limit_e";
+        }
         if($sort == '' or null)
         {
             if($tipoManifestacao == '' or null)
             {
-                $sql = $db_conn->prepare("select * from manifestacao order by idManifestacao DESC");
+                $stmn = "select * from manifestacao order by idManifestacao DESC $limit";
+                $sql = $db_conn->prepare($stmn);
                 $sql->execute();
 
                 $sql = $sql->get_result();
 
                 return $sql;
             }else{
-                $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC");
+                $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC $limit");
                 $sql->bind_param("i", $tipoManifestacao);
                 $sql->execute();
 
@@ -423,16 +432,16 @@ class Manifestacoes{
                 switch($sort)
                 {
                     case "datalimiteAsc":
-                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite ASC");
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite ASC $limit");
                     break;
                     case "datalimiteDesc":
-                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite DESC");
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataLimite DESC $limit");
                     break;
                     case "datarecebimentoAsc":
-                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento ASC");
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento ASC $limit");
                     break;
                     case "datarecebimentoDesc":
-                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento DESC");
+                        $sql = $db_conn->prepare("select * from manifestacao order by dataRecebimento DESC $limit");
                     break;
                 }
                 $sql->execute();
@@ -443,19 +452,19 @@ class Manifestacoes{
                 switch($sort)
                 {
                     case "datalimiteAsc":
-                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite ASC");
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite ASC $limit");
                         $sql->bind_param("i", $tipoManifestacao);
                     break;
                     case "datalimiteDesc":
-                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite DESC");
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataLimite DESC $limit");
                         $sql->bind_param("i", $tipoManifestacao);
                     break;
                     case "datarecebimentoAsc":
-                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento ASC");
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento ASC $limit");
                         $sql->bind_param("i", $tipoManifestacao);
                     break;
                     case "datarecebimentoDesc":
-                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento DESC");
+                        $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by dataRecebimento DESC $limit");
                         $sql->bind_param("i", $tipoManifestacao);
                     break;
                 }
