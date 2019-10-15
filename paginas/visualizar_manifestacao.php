@@ -25,6 +25,12 @@
     <div class="recebida_por blue-grey lighten-3 z-depth-1"><span><?php echo Manifestacoes::getNomeFormaRecebimento($Manifestacao->getFormaRecebimento()) ?></span></div>
     <div class='adicionadaPor blue-grey lighten-3 z-depth-1 tooltipped' data-position="bottom" data-tooltip="<?php echo $User->getLogin() ?>"><span><?php echo $User->getNome() ?></span></div>
     <div class='prorrogarBtn'><a data-tooltip="Prorrogar" class="waves-effect waves-light btn blue-grey lighten-3 hoverable"><i class="material-icons left">date_range</i>Prorrogar Manifestação</a></div>
+    <?php
+        if($Manifestacao->getSituacao() != 7)
+        {
+            echo("<div class='concluirBtn'><a data-tooltip=\"Conluir Manifestação\" class=\"waves-effect waves-light btn blue-grey lighten-3 hoverable\" mid=\"".$Manifestacao->getIdManifestacao()."\"><i class=\"material-icons left\">check</i>Concluir Manifestação</a></div>");
+        }
+    ?>
     <div class="manifestacaoInfo z-depth-1 <?php echo Manifestacoes::getCorManifestacaoClass($Manifestacao->getTipoManifestacao())."Top" ?>">
         <div class='row'>
             <div class='col s1'><span>Cód. :</span> <span><?php echo $Manifestacao->getIdManifestacao() ?></span></div>
@@ -167,6 +173,25 @@ $(document).ready(function(){
         });
         $("a[data-tooltip='Prorrogar']").on("click", function(e){
             loadPageOnWindow('Prorrogar Manifestação', '80%', '50vh', 'd_paginas/prorrogar_manifestacao.php?id=<?php echo $id ?>');
+        });
+        $("a[data-tooltip='Conluir Manifestação']").on("click", function(e){
+            showLoading();
+            $.ajax({
+                url: 'scripts/update_manifestacao.php?actionId=concluirManifestacao&idManifestacao='+$(this).attr("mid"),
+                type: 'POST',
+                success: function(data)
+                {
+                    if(data == "ok")
+                    {
+                        alert("Manifestação concluída com sucesso.");
+                        window.location.reload();
+                        closeLoading();
+                    }else{
+                        alert(data);
+                        closeLoading();
+                    }
+                }
+            });
         });
         
 });

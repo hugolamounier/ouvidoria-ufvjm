@@ -58,6 +58,23 @@
                 return false;
             }
         }
+        public function editarUser()
+        {
+            if(self::existeUsuario($this->login, $this->db_conn))
+            {
+                $sql = $this->db_conn->prepare("update usuario set senha=?, email=?, autoridade=? where login=?");
+                $sql->bind_param("ssis", $this->password, $this->email, $this->autoridade, $this->login);
+                $sql->execute();
+                if($sql)
+                {
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
         public function desativarUsuario()
         {
             if(self::existeUsuario($this->login, $this->db_conn))

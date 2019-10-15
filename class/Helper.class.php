@@ -158,5 +158,20 @@ class Helper{
             return false;
         }
     }
+    public static function getAssuntoById($assuntoId, $db_conn)
+    {
+        $sql = $db_conn->prepare("select * from assuntos where id=?");
+        $sql->bind_param('i', $assuntoId);
+        $sql->execute();
+        $sql = $sql->get_result();
+        if($sql->num_rows > 0)
+        {
+            $row = $sql->fetch_assoc();
+
+            return $row['nomeAssunto'];
+        }else{
+            return "Desconhecido";
+        }
+    }
 }
 ?>

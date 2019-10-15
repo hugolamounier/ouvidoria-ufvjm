@@ -81,103 +81,216 @@ class Manifestacoes{
         }
     }
     
-    public static function totalSituacao($tipo, $db_conn)
+    public static function totalSituacao($tipo, $dataInicial, $dataFinal, $db_conn)
     {
-        switch($tipo)
+        if(empty($dataInicial) || empty($dataFinal))
         {
-        
-            case 1:     //Cadastrado
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 1");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 2:     //Complementação Solicitada
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 2");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 3:  //Complementado
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 3");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 4:    //Encaminhado por outra Ouvidoria
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 4");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 5:  //Prorrogado
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 5");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 6:   //Arquivad 
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 6");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 7:  //Concluido
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 7");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 8:   //Encaminhado para Orgão externo/encerrado
-            $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 8");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
+            switch($tipo)
+            {
             
+                case 1:     //Cadastrado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 1");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 2:     //Complementação Solicitada
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 2");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 3:  //Complementado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 3");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 4:    //Encaminhado por outra Ouvidoria
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 4");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 5:  //Prorrogado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 5");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 6:   //Arquivad 
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 6");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 7:  //Concluido
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 7");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 8:   //Encaminhado para Orgão externo/encerrado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 8");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                
+            }
+        }else{
+            switch($tipo)
+            {
+            
+                case 1:     //Cadastrado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 1 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 2:     //Complementação Solicitada
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 2 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 3:  //Complementado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 3 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 4:    //Encaminhado por outra Ouvidoria
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 4 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 5:  //Prorrogado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 5 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 6:   //Arquivad 
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 6 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 7:  //Concluido
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 7 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 8:   //Encaminhado para Orgão externo/encerrado
+                $sql = $db_conn->prepare("SELECT situacao FROM manifestacao WHERE situacao = 8 and dataRecebimento between ? and ?");
+                $sql->bind_param("ss", $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;   
+            }
         }
     }
 
-    public static function totalManifestacoes($tipo, $db_conn)
+    public static function totalManifestacoes($tipo, $dataInicial, $dataFinal, $db_conn)
     {
-        switch($tipo)
+        if(empty($dataInicial) || empty($dataFinal))
         {
-            case 0:
-            $sql = $db_conn->prepare("SELECT * from manifestacao");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 1:
-            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 1");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 2:
-            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 2");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 3:
-            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 3");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 4:
-            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 4");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
-            case 5:
-            $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 5");
-            $sql ->execute();
-            $sql = $sql->get_result();
-            return $sql->num_rows;
-            break;
+            switch($tipo)
+            {
+                case 0:
+                $sql = $db_conn->prepare("SELECT * from manifestacao");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 1:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 1");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 2:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 2");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 3:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 3");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 4:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 4");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 5:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 5");
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+            }
+        }else{
+            switch($tipo)
+            {
+                case 0:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 1:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 1 and dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 2:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 2 and dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 3:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 3 and dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 4:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 4 and dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+                case 5:
+                $sql = $db_conn->prepare("SELECT * from manifestacao where tipoManifestacao = 5 and dataRecebimento between ? and ?");
+                $sql->bind_param('ss', $dataInicial, $dataFinal);
+                $sql ->execute();
+                $sql = $sql->get_result();
+                return $sql->num_rows;
+                break;
+            }
         }
     }
 

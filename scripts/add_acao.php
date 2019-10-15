@@ -33,6 +33,11 @@
                 $dataEncaminhamento = $_POST['dataEncaminhamento'];
                 $dataLimitePosicionamento = $_POST['dataLimitePosicionamento'];
 
+                if(empty($encaminhamentoPara) || empty($dataEncaminhamento))
+                {
+                    die("É necessário preencher os campos de encaminhamento. (Encaminhamento Para) ou (Data Encaminhamento)");
+                }
+
                 if(empty($dataLimitePosicionamento))
                 {
                     $dataLimitePosicionamento = null;
@@ -43,8 +48,8 @@
                 $anexoFileName = $idManifestacao.".$totalAcao - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
                 if(!empty($path))
                 {
-                    if ($_FILES['arquivo']['error'] != 0) {
-                        die("Não foi possível fazer o upload, erro:<br />" . $_UP['erros'][$_FILES['arquivo']['error']]);
+                    if ($_FILES['anexo']['error'] != 0) {
+                        die("Não foi possível fazer o upload, erro:<br />" . $_UP['erros'][$_FILES['anexo']['error']]);
                         exit;
                         }
                         
@@ -76,8 +81,8 @@
             $anexoFileName = $idManifestacao.".$totalAcao - ".Pendencias::getNomePendencia($tipoPendencia)." - Anexo.".$ext;
                 if(!empty($path))
                 {
-                    if ($_FILES['arquivo']['error'] != 0) {
-                        die("Não foi possível fazer o upload, erro:<br />" . $_UP['erros'][$_FILES['arquivo']['error']]);
+                    if ($_FILES['anexo']['error'] != 0) {
+                        die("Não foi possível fazer o upload, erro:<br />" . $_UP['erros'][$_FILES['anexo']['error']]);
                         exit;
                         }
                         

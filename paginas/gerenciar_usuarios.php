@@ -76,6 +76,10 @@
     $("a[data-tooltip='Adicionar Usuário']").on('click', function(){
         loadPageOnWindow('Adicionar Usuário', '80%', '52vh', 'd_paginas/add_user.php');
     });
+    $("a[data-tooltip='Editar Usuário']").on('click', function(){
+        var user = $(this).attr("user");
+        loadPageOnWindow('Editar Usuário', '80%', '52vh', 'd_paginas/editar_user.php?user='+user);
+    });
     $("a[data-tooltip='Desativar Usuário']").on('click', function(){
         showLoading();
         var id = $(this).attr("user");
