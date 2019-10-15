@@ -70,9 +70,9 @@
 
         if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)
         {
-            loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim, "lManifestacoes");
+            loadScript("scripts/lista_manifestacoes.php", "lManifestacoes");
         }else{
-            loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim+"&tipo="+getUrlHash('tipo'), "lManifestacoes");
+            loadScript("scripts/lista_manifestacoes.php?tipo="+getUrlHash('tipo'), "lManifestacoes");
         }
 
 
@@ -138,27 +138,5 @@
             }
             loadScript('scripts/lista_manifestacoes.php?sort=datarecebimentoDesc&tipo='+tipo, 'lManifestacoes');
         });
-    jQuery(function($) {
-        $('div').on('scroll', function() {
-            if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-                getMoreData();
-                }
-            })
-    });
-    function getMoreData()
-    {  
-        pIni = pFim;
-        pFim = pFim + numItens;
-        $.ajax({
-            url: "scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim,
-            type: 'GET',
-            beforeSend: function(){ showLoading(); },
-            success: function(data)
-            {
-                $("#lManifestacoes").append(data);
-                closeLoading();
-            }
-        });
-    }
   });
 </script>
