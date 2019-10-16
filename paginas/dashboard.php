@@ -66,14 +66,21 @@
 
         function onWindowScroll()
         {
-            $('#indexCnt').on('scroll', function(){
-                var scrollHeight = $(this)[0].scrollHeight;
-                var scrollPosition = $(this).scrollTop() + $(this).outerHeight();
-                if(Math.floor(scrollHeight - scrollPosition) <= 0)
-                {
-                    getMoreData();
-                }
-            });
+            
+                $('#indexCnt').on('scroll', function(){
+                    if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)
+                    {
+                        if($("#searchManifestacaoData").val() == '' && $("#searchManifestacao").val() == '')
+                        {
+                            var scrollHeight = $(this)[0].scrollHeight;
+                            var scrollPosition = $(this).scrollTop() + $(this).outerHeight();
+                            if(Math.floor(scrollHeight - scrollPosition) <= 0)
+                            {
+                                getMoreData();
+                            }   
+                        }
+                    }
+                });
         }
         onWindowScroll();
 
@@ -108,7 +115,7 @@
         {
             loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim, "lManifestacoes");
         }else{
-            loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim+"&tipo="+getUrlHash('tipo'), "lManifestacoes");
+            loadScript("scripts/lista_manifestacoes.php?&tipo="+getUrlHash('tipo'), "lManifestacoes");
         }
 
 
