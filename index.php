@@ -47,7 +47,6 @@
     
     ?>
     <div id="indexCnt" class="cnt">
-    <div id="print"></div>
     <?php
         if(isset($_GET["page"]))
         {
@@ -61,6 +60,7 @@
             include("paginas/dashboard.php");
         }
     ?>
+    <div class='clear'></div>
     </div>
         <?php
     }else{
