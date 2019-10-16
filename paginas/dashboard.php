@@ -69,7 +69,7 @@
             $('#indexCnt').on('scroll', function(){
                 var scrollHeight = $(this)[0].scrollHeight;
                 var scrollPosition = $(this).scrollTop() + $(this).outerHeight();
-                if(Math.floor(scrollHeight - scrollPosition) === 0)
+                if(Math.floor(scrollHeight - scrollPosition) <= 0)
                 {
                     getMoreData();
                 }
@@ -78,7 +78,7 @@
         onWindowScroll();
 
         var pIni = 0;
-        var numItens = 7;
+        var numItens = 15;
         var pFim = numItens;
 
         function getMoreData()
@@ -100,7 +100,8 @@
         // setInterval(function(){ 
         //     var scrollHeight = $('#indexCnt')[0].scrollHeight;
         //     var scrollPosition = $('#indexCnt').scrollTop() + $('#indexCnt').outerHeight();
-        //     alert(Math.floor((scrollHeight - scrollPosition)));
+        //     var calc = scrollHeight - scrollPosition;
+        //     alert(Math.floor(calc));
 
         //  }, 3000);
         if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)

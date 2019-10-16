@@ -60,7 +60,6 @@
             include("paginas/dashboard.php");
         }
     ?>
-    <div class='clear'></div>
     </div>
         <?php
     }else{
