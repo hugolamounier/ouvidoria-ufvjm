@@ -31,7 +31,7 @@
                 </ul>
 
                 <div class='legenda z-depth-1'>
-                    <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php', 'lManifestacoes');location.href='#tipo=0'"><div class="grey lighten-1"></div><span>Todas</span></div>
+                    <div class="tipo_manifestacao" onclick="location.href='?page=dashboard'"><div class="grey lighten-1"></div><span>Todas</span></div>
                     <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php?tipo=1', 'lManifestacoes');location.href='#tipo=1'"><div class="red darken-1"></div><span>Denúncia</span></div>
                     <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php?tipo=2', 'lManifestacoes');location.href='#tipo=2'"><div class="orange darken-2"></div><span>Reclamação</span></div>
                     <div class="tipo_manifestacao" onclick="loadScript('scripts/lista_manifestacoes.php?tipo=3', 'lManifestacoes');location.href='#tipo=3'"><div class="green darken-1"></div><span>Solicitação</span></div>
