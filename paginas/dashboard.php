@@ -41,6 +41,43 @@
             </div>
         </div>
     </div>
+    <div class='row'>
+        <div class='col s12'>
+            <div class='dashboard_sort'>
+            <div class='legenda z-depth-1'>
+                    <div class="tipo_manifestacao" e-name='mEmAberto'><div class="blue-grey"></div><span>Em aberto</span></div>
+                    <div class="tipo_manifestacao" e-name='mConcluidas'><div class="green accent-4"></div><span>Concluídas</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $('.tipo_manifestacao').on('click', function(){
+        if($(this).attr('e-name') == 'mEmAberto')
+        {
+            if(getUrlHash('tipo') != null)
+            {
+                var hash = getUrlHash('tipo');
+                loadScript('scripts/lista_manifestacoes.php?sSort=0&tipo='+hash, 'lManifestacoes');
+                location.href='#situacao=0&tipo='+hash;
+            }else{
+                loadScript('scripts/lista_manifestacoes.php?sSort=0', 'lManifestacoes');
+                location.href='#situacao=0';
+            }
+        }else if($(this).attr('e-name') == 'mConcluidas'){
+            if(getUrlHash('tipo') != null)
+            {
+                var hash = getUrlHash('tipo');
+                loadScript('scripts/lista_manifestacoes.php?sSort=1&tipo='+hash, 'lManifestacoes');
+                location.href='#situacao=1&tipo='+hash;
+            }else{
+                loadScript('scripts/lista_manifestacoes.php?sSort=1', 'lManifestacoes');
+                location.href='#situacao=1';
+            }
+        }
+    });
+    </script>
 
     <!-- Container das manifestações -->
     <section id="listaManifestacoes">
@@ -70,7 +107,7 @@
                 $('#indexCnt').on('scroll', function(){
                     if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)
                     {
-                        if($("#searchManifestacaoData").val() == '' && $("#searchManifestacao").val() == '')
+                        if($("#searchManifestacaoData").val() == '' && $("#searchManifestacao").val() == '' && getUrlHash('situacao') == null)
                         {
                             var scrollHeight = $(this)[0].scrollHeight;
                             var scrollPosition = $(this).scrollTop() + $(this).outerHeight();
@@ -104,13 +141,7 @@
                 }
             });
         }
-        // setInterval(function(){ 
-        //     var scrollHeight = $('#indexCnt')[0].scrollHeight;
-        //     var scrollPosition = $('#indexCnt').scrollTop() + $('#indexCnt').outerHeight();
-        //     var calc = scrollHeight - scrollPosition;
-        //     alert(Math.floor(calc));
 
-        //  }, 3000);
         if(getUrlHash('tipo') == null || getUrlHash('tipo') == 0)
         {
             loadScript("scripts/lista_manifestacoes.php?pIni="+pIni+"&pFim="+pFim, "lManifestacoes");

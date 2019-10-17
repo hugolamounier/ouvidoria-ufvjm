@@ -396,7 +396,7 @@ class Manifestacoes{
         }
     }
 
-    public static function listarManifestacoes($tipoManifestacao, $sort, $limit_i, $limit_e, $db_conn)
+    public static function listarManifestacoes($tipoManifestacao, $situacaoManifestacao, $sort, $limit_i, $limit_e, $db_conn)
     {
         if($limit_e == '' || $limit_i == '')
         {
@@ -410,21 +410,69 @@ class Manifestacoes{
         {
             if($tipoManifestacao == '' or null)
             {
-                $stmn = "select * from manifestacao order by idManifestacao DESC $limit";
-                $sql = $db_conn->prepare($stmn);
-                $sql->execute();
-
-                $sql = $sql->get_result();
-
-                return $sql;
+                if(!empty($situacaoManifestacao))
+                {
+                    switch($situacaoManifestacao)
+                    {
+                        case 7:
+                            $sql = $db_conn->prepare("select * from manifestacao where situacao = ? order by idManifestacao DESC $limit");
+                            $sql->bind_param("i", $situacaoManifestacao);
+                            $sql->execute();
+            
+                            $sql = $sql->get_result();
+            
+                            return $sql;
+                        break;
+                        default:
+                            $sql = $db_conn->prepare("select * from manifestacao where situacao != 7 order by idManifestacao DESC $limit");
+                            $sql->execute();
+            
+                            $sql = $sql->get_result();
+            
+                            return $sql;
+                        break;
+                    }
+                }else{
+                    $sql = $db_conn->prepare("select * from manifestacao order by idManifestacao DESC $limit");
+                    $sql->execute();
+        
+                    $sql = $sql->get_result();
+    
+                    return $sql;
+                }
             }else{
-                $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC $limit");
-                $sql->bind_param("i", $tipoManifestacao);
-                $sql->execute();
+                if(!empty($situacaoManifestacao))
+                {
+                    switch($situacaoManifestacao)
+                    {
+                        case 7:
+                            $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? and situacao = ? order by idManifestacao DESC $limit");
+                            $sql->bind_param("ii", $tipoManifestacao, $situacaoManifestacao);
+                            $sql->execute();
+            
+                            $sql = $sql->get_result();
+            
+                            return $sql;
+                        break;
+                        default:
+                            $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? and situacao != 7 order by idManifestacao DESC $limit");
+                            $sql->bind_param("i", $tipoManifestacao);
+                            $sql->execute();
+            
+                            $sql = $sql->get_result();
+            
+                            return $sql;
+                        break;
+                    }
+                }else{
+                    $sql = $db_conn->prepare("select * from manifestacao where tipoManifestacao = ? order by idManifestacao DESC $limit");
+                    $sql->bind_param("i", $tipoManifestacao);
+                    $sql->execute();
 
-                $sql = $sql->get_result();
+                    $sql = $sql->get_result();
 
-                return $sql;
+                    return $sql;
+                }
             }
         }else{
             if($tipoManifestacao == 0)

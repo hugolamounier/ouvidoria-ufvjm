@@ -63,9 +63,18 @@ if(isset($_GET["p"]))
         $final = '';
     }
 
+    if(isset($_GET['sSort']) && $_GET['sSort'] == 1)
+    {
+        $situacao = 7;
+    }else if(isset($_GET['sSort']) && $_GET['sSort'] == 0){
+        $situacao = 1;
+    }else{
+        $situacao = '';
+    }
+
     if($tipoManifestacao == '' || $tipoManifestacao == 0)
     {
-        $lista = Manifestacoes::listarManifestacoes('', $filtro, $inicial, $final, $db_conn);
+        $lista = Manifestacoes::listarManifestacoes('', $situacao, $filtro, $inicial, $final, $db_conn);
         while($row = $lista->fetch_array())
         {
             if(strlen($row["assunto"]) > 80)
@@ -89,7 +98,7 @@ if(isset($_GET["p"]))
         switch($tipoManifestacao)
         {
             case 1:
-            $denuncia = Manifestacoes::listarManifestacoes(1, $filtro, $inicial, $final, $db_conn);
+            $denuncia = Manifestacoes::listarManifestacoes(1, $situacao, $filtro, $inicial, $final, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Denúncia</span></div>");
             while($row = $denuncia->fetch_array())
             {
@@ -112,7 +121,7 @@ if(isset($_GET["p"]))
             }
             break;
             case 2:
-            $reclamacao = Manifestacoes::listarManifestacoes(2, $filtro, $inicial, $final, $db_conn);
+            $reclamacao = Manifestacoes::listarManifestacoes(2, $situacao, $filtro, $inicial, $final, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Reclamação</span></div>");
             while($row = $reclamacao->fetch_array())
             {
@@ -135,7 +144,7 @@ if(isset($_GET["p"]))
             }
             break;
             case 3:
-            $solicitacao = Manifestacoes::listarManifestacoes(3, $filtro, $inicial, $final, $db_conn);
+            $solicitacao = Manifestacoes::listarManifestacoes(3, $situacao, $filtro, $inicial, $final, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Solicitação</span></div>");
             while($row = $solicitacao->fetch_array())
             {
@@ -158,7 +167,7 @@ if(isset($_GET["p"]))
             }
             break;
             case 4:
-            $sugestao = Manifestacoes::listarManifestacoes(4, $filtro, $inicial, $final, $db_conn);
+            $sugestao = Manifestacoes::listarManifestacoes(4, $situacao, $filtro, $inicial, $final, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Sugestão</span></div>");
             while($row = $sugestao->fetch_array())
             {
@@ -181,7 +190,7 @@ if(isset($_GET["p"]))
             }
             break;
             case 5:
-            $elogio = Manifestacoes::listarManifestacoes(5, $filtro, $inicial, $final, $db_conn);
+            $elogio = Manifestacoes::listarManifestacoes(5, $situacao, $filtro, $inicial, $final, $db_conn);
             echo("<div class=\"group_title blue-grey-text\"><span>Elogio</span></div>");
             while($row = $elogio->fetch_array())
             {
