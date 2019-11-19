@@ -62,8 +62,8 @@
         {
             if(self::existeUsuario($this->login, $this->db_conn))
             {
-                $sql = $this->db_conn->prepare("update usuario set senha=?, email=?, autoridade=? where login=?");
-                $sql->bind_param("ssis", $this->password, $this->email, $this->autoridade, $this->login);
+                $sql = $this->db_conn->prepare("update usuario set senha=?, nome=?, email=?, autoridade=? where login=?");
+                $sql->bind_param("sssis", $this->password, $this->nome, $this->email, $this->autoridade, $this->login);
                 $sql->execute();
                 if($sql)
                 {

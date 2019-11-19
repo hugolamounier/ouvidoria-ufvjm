@@ -574,6 +574,7 @@ class Manifestacoes{
         }else{
             return false;
         }
+        
     }
     public static function deletarManifestacao($idManifestacao, $db_conn)
     {

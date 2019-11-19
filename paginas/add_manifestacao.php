@@ -69,7 +69,7 @@
                         <option value="Campus Janaúba">Campus Janaúba</option>
                         <option value="Campus Unaí">Campus Unaí</option>
                         <option value="Campus Mucuri">Campus Mucuri</option>
-                        <option value="Desconhecido">Desconhecido</option>
+                        <option value="Não Informado">Não Informado</option>
                     </select>
                     <label>Campus</label>
             </div>

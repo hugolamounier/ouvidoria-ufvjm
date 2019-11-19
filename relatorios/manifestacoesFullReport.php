@@ -104,6 +104,6 @@ $(document).ready(function(){
     grafico(<?php echo json_encode(Graficos::consultarSituacao($db_conn, $di, $df), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#F39C12","#E67E22","#884EA0","#7FB3D5","#76D7C4","#D5F5E3","#7D6608","#7E5109","#DC7633"], 'chartSituacao', '', '', 'doughnut', 15);
     grafico(<?php echo json_encode(Graficos::consultarNup($db_conn, $di, $df), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#3FFF00"], 'chartOrigem', '', '', 'doughnut', 16);
     grafico(<?php echo json_encode(Graficos::consultarProveniencia($db_conn, $di, $df), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#3FFF00"], 'chartProveniencia', '', '', 'doughnut', 16);
-    grafico(<?php echo json_encode(Graficos::consultaCampus($db_conn, $di, $df), JSON_NUMERIC_CHECK) ?>, ["#CB4335","#2E86C1","#28B463","#F1C40F","#F39C12", "#76D7C4"], 'chartUnidadeEnvolvida', '', '', 'doughnut', 15);
+    grafico(<?php echo json_encode(Graficos::consultaCampus($db_conn, $di, $df), JSON_NUMERIC_CHECK) ?>, ["#884ea0","#CB4335","#2E86C1","#28B463","#F1C40F","#F39C12", "#76D7C4"], 'chartUnidadeEnvolvida', '', '', 'doughnut', 15);
 });
 </script>
