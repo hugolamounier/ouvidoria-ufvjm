@@ -713,7 +713,6 @@ class Manifestacoes{
 
     public static function editarManifestacao($id, $db_conn){
         if (self::existeManifestacao($id, $db_conn)) {
-
                     $nup = $_POST["nup"];
                     $tipoManifestacao = $_POST["tipoManifestacao"];
                     $dataRecebimento = Helper::converterDataToMysqlData($_POST["dataRecebimento"]);
@@ -735,7 +734,7 @@ class Manifestacoes{
                     $unidadeEnvolvida = $_POST["unidadeEnvolvida"];
                     $topicoManifestacao = $_POST["topicoManifestacao"];
     
-                    $sql_1 =$db_conn->prepare("UPDATE manifestacao SET nup=?, tipoManifestacao=?, dataRecebimento=?, assunto=?, situacao=?,dataLimite=?, nomeDemandante=?, unidadeEnvolvida=?, emailDemandante=?, infoExtra=?, proveniencia=?, topicoManifestacao=?, formaRecebimento=? WHERE idManifestacao = ?");
+                    $sql_1 =$db_conn->prepare("UPDATE manifestacao SET nup=?, tipoManifestacao=?, dataRecebimento=?, assunto=?, situacao=?, dataLimite=?, nomeDemandante=?, unidadeEnvolvida=?, emailDemandante=?, infoExtra=?, proveniencia=?, topicoManifestacao=?, formaRecebimento=? WHERE idManifestacao = ?");
                     $sql_1->bind_param("sississsssiiii" , $nup, $tipoManifestacao, $dataRecebimento, $assunto, $situacao, $dataLimite, $nomeDemandante, $unidadeEnvolvida, $emailDemandante, $infoExtra, $proveniencia, $topicoManifestacao, $formaRecebimento, $id);
                     $sql_1->execute();
                     if($sql_1) {

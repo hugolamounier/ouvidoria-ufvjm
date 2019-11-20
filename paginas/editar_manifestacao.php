@@ -19,7 +19,7 @@
     <form id="formManifestacao" name="formManifestacao" class="col s12">
         <div class="row">
             <div class="input-field col s4">
-                <input id="nup" type="text" class="validate" name="nup" value="<?php $Manifestacao->getNup() ?>">
+                <input id="nup" type="text" class="validate" name="nup" value="<?php echo $Manifestacao->getNup() ?>">
                 <label for="nup">NUP</label>
                 </div>
                 <div class="input-field col s4">
@@ -91,7 +91,7 @@
                         <option value="Campus Janaúba"<?php if($Manifestacao->getUnidadeEnvolvida() == "Campus Janaúba"){echo "selected";} ?>>Campus Janaúba</option>
                         <option value="Campus Unaí" <?php if($Manifestacao->getUnidadeEnvolvida() == "Campus Unaí"){echo "selected";} ?>>Campus Unaí</option>
                         <option value="Campus Mucuri" <?php if($Manifestacao->getUnidadeEnvolvida() == "Campus Mucuri"){echo "selected";} ?>>Campus Mucuri</option>
-                        <option value="Desconhecido" <?php if($Manifestacao->getUnidadeEnvolvida() == "Desconhecido"){echo "selected";} ?>>Desconhecido</option>
+                        <option value="Não Informado" <?php if($Manifestacao->getUnidadeEnvolvida() == "Não Informado"){echo "selected";} ?>>Não Informado</option>
                     </select>
                     <label>Campus</label>
             </div>
